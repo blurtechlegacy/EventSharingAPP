@@ -30,7 +30,7 @@
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="login"
+        android:hint="password"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_login"
@@ -45,15 +45,16 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_password"
         />
-    <EditText
+    <Button
         android:id="@+id/sign_up_but"
-        android:layout_width="270dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:hint="sign up"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_repeat_password"
+        android:background="@android:color/transparent"
         />
 
 </android.support.constraint.ConstraintLayout>
