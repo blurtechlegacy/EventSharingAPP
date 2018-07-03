@@ -54,7 +54,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_repeat_password"
-        android:background="@android:color/transparent"
+        android:background="#80fb90"
         />
 
 </android.support.constraint.ConstraintLayout>
