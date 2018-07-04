@@ -1,6 +1,7 @@
 package com.syberianguys.srggrch.eventsgaring.features.addevents.presentation;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
@@ -14,7 +15,10 @@ import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 
 import java.util.ArrayList;
 
-public class AddEventActitvity extends BaseActivity{
+public class AddEventActitvity extends AppCompatActivity{
+   /*
+   Не забыть унаследоваться от BaseActivity
+    */
     private EditText editName;
     private EditText editLogin;
     private EditText editDescription;
@@ -52,14 +56,14 @@ public class AddEventActitvity extends BaseActivity{
         addNewEventAdapter = new AdapterTag(tags);
         recyclerTags.setAdapter(addNewEventAdapter);
     }
-    @Override
-    protected <T extends MvpView> MvpPresenter<T> getPresenter() {
-        return null;
-    }
-
-    @Override
-    protected <T extends MvpView> T getMvpView() {
-        return null;
-    }
+//    @Override
+//    protected <T extends MvpView> MvpPresenter<T> getPresenter() {
+//        return null;
+//    }
+//
+//    @Override
+//    protected <T extends MvpView> T getMvpView() {
+//        return null;
+//    }
 
 }
