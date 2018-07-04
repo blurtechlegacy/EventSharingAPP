@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.AllEvents;
+package com.syberianguys.srggrch.eventsgaring.features;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
