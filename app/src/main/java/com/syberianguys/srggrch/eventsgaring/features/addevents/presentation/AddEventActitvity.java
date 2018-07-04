@@ -44,9 +44,6 @@ public class AddEventActitvity extends BaseActivity{
 
 
         tags = new ArrayList<>();
-        for(int i=0;i<30;i++){
-            tags.add("#tag"+i);
-        }
 
         recyclerTags = findViewById(R.id.id_recycler_view_tags);
 
