@@ -17,9 +17,21 @@ import android.view.MenuItem;
 
 import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.AllEvents.BaseActivity;
+import com.syberianguys.srggrch.eventsgaring.features.AllEvents.MvpPresenter;
+import com.syberianguys.srggrch.eventsgaring.features.AllEvents.MvpView;
 
 public class AllEventsActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    @Override
+    protected <T extends MvpView> MvpPresenter<T> getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected <T extends MvpView> T getMvpView() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
