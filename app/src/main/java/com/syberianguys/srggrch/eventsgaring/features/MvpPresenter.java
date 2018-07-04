@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.AllEvents;
+package com.syberianguys.srggrch.eventsgaring.features;
 
 public class MvpPresenter <View extends MvpView>{
     protected View view;
