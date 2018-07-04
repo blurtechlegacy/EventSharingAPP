@@ -7,11 +7,13 @@
               android:id="@+id/linear_of_search"
               android:orientation="horizontal"
     >
-    <EditText android:layout_height="wrap_content"
-              android:layout_width="match_parent"
-              android:layout_weight="10"
-              android:id="@+id/edit_searching"
-        />
+
+    <EditText
+        android:id="@+id/edit_searching"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:hint="Seacrh" />
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
