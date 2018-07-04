@@ -11,21 +11,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.syberianguys.srggrch.eventsgaring.R;
-import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
-import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
-import com.syberianguys.srggrch.eventsgaring.features.MvpView;
-
 public class AllEventsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_all_events);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

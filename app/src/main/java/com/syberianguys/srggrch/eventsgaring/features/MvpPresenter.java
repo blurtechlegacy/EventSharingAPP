@@ -12,6 +12,7 @@ public class MvpPresenter <View extends MvpView>{
         view = null;
     }
 
+    @SuppressWarnings("WeakerAccess")
     protected void onViewReady() {
         // override if need
     }
