@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -28,7 +29,7 @@
         android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="write description name"
+        android:hint="write description here"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_login"
@@ -53,12 +54,13 @@
         android:hint="end event"
         app:layout_constraintTop_toBottomOf="@id/edit_description"
         app:layout_constraintLeft_toRightOf="@id/edit_event_start" />
+
     <Button
         android:id="@+id/add_new_but"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="80dp"
         android:text="save"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_event_start" />
+        app:layout_constraintTop_toBottomOf="@id/edit_description" />
 </android.support.constraint.ConstraintLayout>
