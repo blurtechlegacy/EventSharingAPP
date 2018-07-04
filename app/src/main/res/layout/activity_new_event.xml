@@ -7,10 +7,10 @@
 
     <EditText
         android:id="@+id/edit_name"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-
+        app:layout_constraintDimensionRatio="64:9"
         android:hint="name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -18,45 +18,51 @@
 
     <EditText
         android:id="@+id/edit_login"
-        android:layout_width="320dp"
+        app:layout_constraintDimensionRatio="64:9"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/edit_name"
+        app:layout_constraintRight_toRightOf="@id/edit_name"
         app:layout_constraintTop_toBottomOf="@id/edit_name" />
 
     <EditText
         android:id="@+id/edit_description"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:hint="write description here"
         android:inputType="textMultiLine"
-        android:lines="5"
+        android:lines="3"
+        app:layout_constraintDimensionRatio="33:9"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_login" />
 
-    <EditText
-        android:id="@+id/edit_event_start"
-        android:layout_width="160dp"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:hint="start event"
+        android:orientation="horizontal"
+        app:layout_constraintDimensionRatio="64:9"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_description" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_description">
 
-    <EditText
-        android:id="@+id/edit_event_end"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="end event"
-        app:layout_constraintLeft_toRightOf="@id/edit_event_start"
-        app:layout_constraintTop_toBottomOf="@id/edit_description" />
+        <EditText
+            android:id="@+id/edit_event_start"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="start" />
 
+        <EditText
+            android:id="@+id/edit_event_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="end event"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/id_recycler_view_tags"
         android:layout_width="wrap_content"
@@ -67,12 +73,16 @@
 
     <Button
         android:id="@+id/add_new_but"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginTop="160dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
         android:background="@color/colorPrimary"
         android:text="save"
+        app:layout_constraintDimensionRatio="61:9"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_description" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edit_description"
+
+        />
 
 </android.support.constraint.ConstraintLayout>
