@@ -31,6 +31,8 @@ public final class AddEventActivity extends AppCompatActivity{
 
     private ArrayList<String> tags;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
