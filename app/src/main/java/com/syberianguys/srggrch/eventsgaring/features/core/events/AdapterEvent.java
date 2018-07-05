@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.AllEvents.presentation;
+package com.syberianguys.srggrch.eventsgaring.features.core.events;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -7,10 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.syberianguys.srggrch.eventsgaring.R;
-import com.syberianguys.srggrch.eventsgaring.features.AllEvents.domain.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
 import java.util.ArrayList;
 
