@@ -11,7 +11,7 @@ import com.syberianguys.srggrch.eventsgaring.R;
 
 import java.util.ArrayList;
 
-public class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder>{
+public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder>{
     ArrayList<String> tags;
 
     public AdapterTag(ArrayList<String> tags) {

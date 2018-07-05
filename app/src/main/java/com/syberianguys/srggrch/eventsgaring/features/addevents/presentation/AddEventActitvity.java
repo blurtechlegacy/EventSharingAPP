@@ -15,7 +15,7 @@ import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 
 import java.util.ArrayList;
 
-public class AddEventActitvity extends AppCompatActivity{
+public final class AddEventActitvity extends AppCompatActivity{
    /*
    Не забыть унаследоваться от BaseActivity
     */
