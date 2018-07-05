@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.AllEvents.presentation;
+package com.syberianguys.srggrch.eventsgaring.features.Events.list.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +17,8 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.syberianguys.srggrch.eventsgaring.R;
-import com.syberianguys.srggrch.eventsgaring.features.AllEvents.domain.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
 import java.util.ArrayList;
 

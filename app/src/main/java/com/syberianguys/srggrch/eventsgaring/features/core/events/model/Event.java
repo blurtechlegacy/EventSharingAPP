@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.AllEvents.domain.model;
+package com.syberianguys.srggrch.eventsgaring.features.core.events.model;
 
 public class Event {
     private int id;
