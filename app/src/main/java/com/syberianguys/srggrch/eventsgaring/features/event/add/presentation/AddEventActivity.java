@@ -12,7 +12,7 @@ import com.syberianguys.srggrch.eventsgaring.R;
 
 import java.util.ArrayList;
 
-public final class AddEventActitvity extends AppCompatActivity{
+public final class AddEventActivity extends AppCompatActivity{
    /*
    Не забыть унаследоваться от BaseActivity
     */
