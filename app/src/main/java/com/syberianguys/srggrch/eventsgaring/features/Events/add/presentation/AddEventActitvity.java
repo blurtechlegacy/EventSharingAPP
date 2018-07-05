@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.addevents.presentation;
+package com.syberianguys.srggrch.eventsgaring.features.Events.add.presentation;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +9,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.syberianguys.srggrch.eventsgaring.R;
-import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
-import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
-import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 
 import java.util.ArrayList;
 

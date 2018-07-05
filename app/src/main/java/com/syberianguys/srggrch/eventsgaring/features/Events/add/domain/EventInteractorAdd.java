@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.addevents.domain;
+package com.syberianguys.srggrch.eventsgaring.features.Events.add.domain;
 
 public interface EventInteractorAdd {
     void addEvents();
