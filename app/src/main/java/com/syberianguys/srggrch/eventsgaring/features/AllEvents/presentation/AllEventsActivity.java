@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,10 +14,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.syberianguys.srggrch.eventsgaring.R;
+import com.syberianguys.srggrch.eventsgaring.features.AllEvents.domain.model.Event;
+
+import java.util.ArrayList;
+
 public class AllEventsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private RecyclerView recyclerEvents;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter AdapterEvent;
+
+    private ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,28 @@ public class AllEventsActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //------------------------------------------------------------------------------------------
+
+
+
+        events = new ArrayList<>();
+
+        for (int i = 0; i<10; i++){
+            events.add(new Event("example",
+                    "exampleHost", "exampleDescription",
+                    Integer.toString(i)));
+        }
+
+        recyclerEvents = findViewById(R.id.allEvent_recycler_view);
+        layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
+        AdapterEvent = new AdapterEvent(events);
+        recyclerEvents.setLayoutManager(layoutManager);
+        recyclerEvents.setAdapter(AdapterEvent);
+
+
+
+
     }
 
     @Override
