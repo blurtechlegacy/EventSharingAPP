@@ -1,6 +1,6 @@
-package com.syberianguys.srggrch.eventsgaring.features.addevents.data;
+package com.syberianguys.srggrch.eventsgaring.features.event.add.data;
 
-import com.syberianguys.srggrch.eventsgaring.features.addevents.domain.model.Form;
+import com.syberianguys.srggrch.eventsgaring.features.add.domain.model.Form;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 import java.util.List;

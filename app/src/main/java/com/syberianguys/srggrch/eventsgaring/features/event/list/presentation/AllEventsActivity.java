@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.Events.list.presentation;
+package com.syberianguys.srggrch.eventsgaring.features.event.list.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

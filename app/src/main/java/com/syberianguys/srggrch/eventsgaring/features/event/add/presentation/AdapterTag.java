@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.Events.add.presentation;
+package com.syberianguys.srggrch.eventsgaring.features.event.add.presentation;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
