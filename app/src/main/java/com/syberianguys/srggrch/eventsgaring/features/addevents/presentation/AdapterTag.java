@@ -21,15 +21,15 @@ public class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).
+        View tagView = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.item_tag,parent,false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        ViewHolder tagViewHolder = new ViewHolder(tagView);
+        return tagViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.mTitle.setText(tags.get(position));
+        holder.tagText.setText(tags.get(position));
     }
 
     @Override
@@ -38,10 +38,10 @@ public class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTitle;
+        public TextView tagText;
         public ViewHolder(View itemView) {
             super(itemView);
-            mTitle = itemView.findViewById(R.id.title);
+            tagText = itemView.findViewById(R.id.title);
         }
     }
 }
