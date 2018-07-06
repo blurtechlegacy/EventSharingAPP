@@ -42,6 +42,8 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
     private ArrayList<String> tags;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
