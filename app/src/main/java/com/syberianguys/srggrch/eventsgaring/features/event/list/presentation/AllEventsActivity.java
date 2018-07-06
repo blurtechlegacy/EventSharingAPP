@@ -1,5 +1,6 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.list.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.syberianguys.srggrch.eventsgaring.R;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
@@ -34,6 +36,10 @@ public class AllEventsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent intent = new Intent(this, SignInActivity.class);
+        startActivity(intent);
+
         setContentView(R.layout.activity_all_events);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
