@@ -1,7 +1,9 @@
 package com.syberianguys.srggrch.eventsgaring.features.auth.signin.data;
 
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.model.UserAuth;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
+import com.syberianguys.srggrch.eventsgaring.network.DefaultCallback;
 
 public class AuthDataSourceImpl implements AuthDataSource {
 
@@ -12,12 +14,12 @@ public class AuthDataSourceImpl implements AuthDataSource {
     }
 
     @Override
-    public void checkAuth(String login, String pass) {
-
+    public void checkAuth(UserAuth userAuth, Carry<UserAuth> carry) {
+        authApi.CheckUser(userAuth).enqueue(new DefaultCallback(carry));
     }
 
     @Override
-    public void getId(String id, Carry<User> carry) {
-
+    public void getUser(String id, Carry<User> carry) {
+        authApi.GetUser(id).enqueue(new DefaultCallback(carry));
     }
 }

@@ -1,10 +1,11 @@
 package com.syberianguys.srggrch.eventsgaring.features.auth.signin.data;
 
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.model.UserAuth;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 public interface AuthDataSource {
-    void checkAuth (String login, String pass);
+    void checkAuth (UserAuth userAuth, Carry<UserAuth> carry);
 
-    void getId(String id, Carry<User> carry);
+    void getUser(String id, Carry<User> carry);
 }
