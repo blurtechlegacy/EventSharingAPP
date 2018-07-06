@@ -1,7 +1,6 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.add.presentation;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
+import com.syberianguys.srggrch.eventsgaring.features.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 
@@ -27,8 +27,8 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
    private ProgressBar progressBar;
 
 
-    private EditText editName;
-    private EditText editLogin;
+    private EditText editNameEvent;
+    private EditText editHostName;
     private EditText editDescription;
     private EditText startEvent;
     private EditText endEvent;
@@ -49,14 +49,43 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
-        editName = findViewById(R.id.edit_name);
-        editLogin = findViewById(R.id.edit_login);
+        editNameEvent = findViewById(R.id.edit_name);
+        editHostName = findViewById(R.id.edit_login);
         editDescription = findViewById(R.id.edit_description);
         startEvent = findViewById(R.id.edit_event_start);
         endEvent = findViewById(R.id.edit_event_end);
         addEventButton = findViewById(R.id.add_new_but);
 
-      //  editName.addTextChangedListener(new );
+        editNameEvent.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.setNameEvent(s.toString());
+            }
+        });
+        editHostName.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.setNameHost(s.toString());
+            }
+        });
+        editDescription.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.setDescription(s.toString());
+            }
+        });
+        startEvent.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.setDateStart(s.toString());
+            }
+        });
+        endEvent.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+               presenter.setDateEnd(s.toString());
+            }
+        });
 
         addEventButton.setOnClickListener(new View.OnClickListener() {
             @Override

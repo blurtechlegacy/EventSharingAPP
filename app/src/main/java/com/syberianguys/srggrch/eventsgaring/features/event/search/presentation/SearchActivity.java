@@ -71,13 +71,13 @@ public class SearchActivity extends BaseActivity implements SearchListView{
             }
         });
     }
-    //todo mvppresenter
+
     @Override
     protected MvpPresenter<SearchListView> getPresenter() {
         presenter = SearchPresenterFactory.createPresenter(this);
         return presenter;
     }
-    //TODO listview
+
     @Override
     protected MvpView getMvpView() {
         return this;
