@@ -1,6 +1,10 @@
-# Event-sharing 
+# Eventhub 
 
 [![HitCount](http://hits.dwyl.io/blurtech/EventSharingAPP.svg)](http://hits.dwyl.io/blurtech/EventSharingAPP)
+
+![Eventhub](https://pp.userapi.com/c623900/v623900143/173e46/ROGLCdEmR3s.jpg)  
+
+> Don't look, act!  
 
 It is a project in borders of School of Information and Financial Technologies in NSU.
 
