@@ -54,10 +54,12 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         endEvent = findViewById(R.id.edit_event_end);
         addEventButton = findViewById(R.id.add_new_but);
 
+      //  editName.addTextChangedListener(new );
+
         addEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onClickedAddNewEvent();
+                presenter.onAddEventClicked();
             }
         });
 
@@ -102,4 +104,5 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
 }

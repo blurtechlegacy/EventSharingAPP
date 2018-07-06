@@ -73,7 +73,5 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
         }
     }
 
-    public void onClickedAddNewEvent() {
-        onAddEventClicked();
-    }
+
 }
