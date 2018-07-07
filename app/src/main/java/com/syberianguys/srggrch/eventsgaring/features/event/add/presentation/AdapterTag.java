@@ -13,10 +13,10 @@ import com.syberianguys.srggrch.eventsgaring.R;
 import java.util.ArrayList;
 
 public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder> {
-    private final ArrayList<String> tags;
+    private final ArrayList<Tag> tags;
     private final TagListerner tagListerner;
 
-    public AdapterTag(ArrayList<String> tags, TagListerner tagListerner) {
+    public AdapterTag(ArrayList<Tag> tags, TagListerner tagListerner) {
         this.tags = tags;
         this.tagListerner = tagListerner;
     }
@@ -48,13 +48,20 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
             tagText = itemView.findViewById(R.id.item_text);
         }
 
-        void bind(final String tagName, final int tagId) {
-            tagText.setText(tagName);
+        void bind(final Tag tag, final int tagId) {
+            tagText.setText(tag.getTagText());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     tagListerner.onTagSelected(tagId);
-                    tagText.setBackgroundColor(Color.CYAN);
+                    if(tag.isTagSelected()==false) {
+                        tagText.setBackgroundColor(Color.CYAN);
+                        tag.setTagSelected(true);
+                    }
+                    else{
+                        tagText.setBackgroundColor(Color.TRANSPARENT);
+                        tag.setTagSelected(false);
+                    }
                 }
             });
 

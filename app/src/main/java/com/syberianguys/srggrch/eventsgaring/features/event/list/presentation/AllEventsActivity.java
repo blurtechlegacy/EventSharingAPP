@@ -1,6 +1,8 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.list.presentation;
 
+
 import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +24,7 @@ import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
 
 import java.util.ArrayList;
 
@@ -49,7 +52,7 @@ public class AllEventsActivity extends AppCompatActivity
         f = getIntent().getBooleanExtra("isAuth", false);
         if (!f) {
             f = true;
-            SignInActivity.start(this);
+            AddEventActivity.start(this);
         }
 
         setContentView(R.layout.activity_all_events);

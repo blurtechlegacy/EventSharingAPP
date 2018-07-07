@@ -14,7 +14,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     private String nameEvent;
     private String nameHost;
     private String description;
-    private ArrayList<Integer> tags;
+    private ArrayList<Integer> tags = new ArrayList<>();
     private String dateStart;
     private String dateEnd;
 
@@ -22,32 +22,9 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
         this.addEventInteractor = addEventInteractor;
     }
 
-    public void setNameEvent(String nameEvent) {
-        this.nameEvent = nameEvent;
-    }
-
-    public void setNameHost(String nameHost) {
-        this.nameHost = nameHost;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setTags(ArrayList<Integer> tags) {
-        this.tags = tags;
-    }
-
-    public void setDateStart(String dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public void setDateEnd(String dateEnd) {
-        this.dateEnd = dateEnd;
-    }
 
     public void onAddEventClicked() {
-        view.showProgress();
+       // view.showProgress();
         Event eventSketch = new Event(nameEvent, nameHost, description, tags, dateStart, dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
@@ -71,6 +48,21 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
         } else {
             tags.add(tag);
         }
+    }
+    public void onNameEventChanged(CharSequence nameEvent){
+        this.nameEvent = nameEvent.toString();
+    }
+    public void onNameHostChanged(CharSequence nameHost){
+        this.nameHost = nameHost.toString();
+    }
+    public void onDescriptionChanged(CharSequence description){
+        this.description = description.toString();
+    }
+    public void onDataStartChanged(CharSequence dateStart){
+        this.dateStart = dateStart.toString();
+    }
+    public void onDataEndChanged(CharSequence dateEnd){
+        this.dateEnd = dateEnd.toString();
     }
 
 

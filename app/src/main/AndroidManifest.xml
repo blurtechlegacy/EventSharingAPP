@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".features.auth.signin.presentation.SignInActivity" />
+        <activity android:name=".features.event.add.presentation.AddEventActivity"/>
+
     </application>
 
 </manifest>

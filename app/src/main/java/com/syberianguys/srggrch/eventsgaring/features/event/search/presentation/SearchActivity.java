@@ -22,10 +22,10 @@ import java.util.ArrayList;
 public class SearchActivity extends BaseActivity implements SearchListView{
    //        не забыть унаследоваться от BaseActivity
 
-    Button searchingButton;
-    EditText editSearch;
+    private Button searchingButton;
+    private EditText editSearch;
 
-    RecyclerView searchingRecyclerEvents;
+    private RecyclerView searchingRecyclerEvents;
     private RecyclerView.Adapter searchingAdapter;
     private RecyclerView.LayoutManager searchingLayoutManager;
 

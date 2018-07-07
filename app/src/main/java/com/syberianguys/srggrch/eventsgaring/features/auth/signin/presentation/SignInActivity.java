@@ -14,6 +14,7 @@ import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.core.DefaultTextWatcher;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.AllEventsActivity;
 
 
@@ -63,7 +64,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
             @Override
             public void onClick(View v) {
                 //resenter.onSignInClicked();
-                AllEventsActivity.start(getApplicationContext(), true);
+                AllEventsActivity.start(getApplicationContext(),true);
             }
         });
 
