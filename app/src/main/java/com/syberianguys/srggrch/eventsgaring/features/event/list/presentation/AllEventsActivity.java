@@ -1,5 +1,7 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.list.presentation;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.syberianguys.srggrch.eventsgaring.R;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
@@ -29,11 +32,26 @@ public class AllEventsActivity extends AppCompatActivity
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter AdapterEvent;
 
+    boolean f = false;
+
     private ArrayList<Event> events;
+
+    public static void start(Context context, boolean isAuth){
+        final Intent intent = new Intent(context, AllEventsActivity.class);
+        intent.putExtra("isAuth", isAuth);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        f = getIntent().getBooleanExtra("isAuth", false);
+        if (!f) {
+            f = true;
+            SignInActivity.start(this);
+        }
+
         setContentView(R.layout.activity_all_events);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

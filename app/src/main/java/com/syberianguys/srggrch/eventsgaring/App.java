@@ -6,6 +6,7 @@ import android.content.Context;
 import com.syberianguys.srggrch.eventsgaring.network.RetrofitProvider;
 
 public final class App extends Application {
+
     private RetrofitProvider retrofitProvider;
 
     public static RetrofitProvider getRetrofitProvider(Context context) {
