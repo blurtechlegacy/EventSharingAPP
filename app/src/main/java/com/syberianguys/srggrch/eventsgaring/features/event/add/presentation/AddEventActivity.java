@@ -53,6 +53,8 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
 
     private ArrayList<Tag> tags;
 
+   // private AddEventActivity activity = this;//каастыль
+
 
 
     @Override
@@ -104,6 +106,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
             @Override
             public void onClick(View v) {
                 presenter.onAddEventClicked();
+                AllEventsActivity.start(new AddEventActivity());
 }
         });
 

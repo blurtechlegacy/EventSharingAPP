@@ -39,6 +39,11 @@ public class AllEventsActivity extends AppCompatActivity
 
     private ArrayList<Event> events;
 
+    public static void start (Context context){
+        final Intent intent = new Intent(context, AllEventsActivity.class);
+        context.startActivity(intent);
+    }
+
     public static void start(Context context, boolean isAuth){
         final Intent intent = new Intent(context, AllEventsActivity.class);
         intent.putExtra("isAuth", isAuth);
@@ -52,7 +57,7 @@ public class AllEventsActivity extends AppCompatActivity
         f = getIntent().getBooleanExtra("isAuth", false);
         if (!f) {
             f = true;
-            AddEventActivity.start(this);
+            SignInActivity.start(this);
         }
 
         setContentView(R.layout.activity_all_events);

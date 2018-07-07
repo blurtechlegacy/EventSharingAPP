@@ -3,6 +3,7 @@ package com.syberianguys.srggrch.eventsgaring.features.event.add.presentation;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.domain.AddEventInteractor;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.AllEventsActivity;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
 
     public void onAddEventClicked() {
-       // view.showProgress();
+        //view.showProgress();
         Event eventSketch = new Event(nameEvent, nameHost, description, tags, dateStart, dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
@@ -38,6 +39,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
                 view.showError(throwable.getMessage());
             }
         });
+
     }
 
 
