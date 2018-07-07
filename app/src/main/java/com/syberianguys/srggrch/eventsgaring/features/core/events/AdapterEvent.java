@@ -67,5 +67,6 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> 
             shortDesription = itemView.findViewById(R.id.item_element_textView_shortDescription);
             eventMore = itemView.findViewById(R.id.item_element_eventMore);
         }
+
     }
 }

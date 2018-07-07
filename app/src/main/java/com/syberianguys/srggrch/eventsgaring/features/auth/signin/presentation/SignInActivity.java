@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,9 +11,8 @@ import android.widget.EditText;
 import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
-import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.core.DefaultTextWatcher;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.AllEventsActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 
 public class SignInActivity extends BaseActivity implements SignInView{
@@ -63,7 +61,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
             @Override
             public void onClick(View v) {
                 //resenter.onSignInClicked();
-                AllEventsActivity.start(getApplicationContext(), true);
+                EventsListActivity.start(getApplicationContext(), true);
             }
         });
 

@@ -19,25 +19,30 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import com.syberianguys.srggrch.eventsgaring.R;
+import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
+import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
+import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
 import java.util.ArrayList;
 
-public class AllEventsActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class EventsListActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, EventListView {
 
     private RecyclerView recyclerEvents;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter AdapterEvent;
+    private RecyclerView.Adapter adapterEvent;
 
-    boolean f = false;
+    private boolean f = false;
 
     private ArrayList<Event> events;
 
+    private EventListPresenter presenter;
+
     public static void start(Context context, boolean isAuth){
-        final Intent intent = new Intent(context, AllEventsActivity.class);
+        final Intent intent = new Intent(context, EventsListActivity.class);
         intent.putExtra("isAuth", isAuth);
         context.startActivity(intent);
     }
@@ -88,13 +93,18 @@ public class AllEventsActivity extends AppCompatActivity
 
         recyclerEvents = findViewById(R.id.allEvent_recycler_view);
         layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
-        AdapterEvent = new AdapterEvent(events);
+        adapterEvent = new AdapterEvent(events);
         recyclerEvents.setLayoutManager(layoutManager);
-        recyclerEvents.setAdapter(AdapterEvent);
+        recyclerEvents.setAdapter(adapterEvent);
 
+        recyclerEvents.setOnLongClickListener(new RecyclerView.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });
 
-
-
+        //adapterEvent
     }
 
     @Override
@@ -161,4 +171,17 @@ public class AllEventsActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    @Override
+    protected MvpPresenter<EventListView> getPresenter() {
+        presenter = EventListPresenterFactory.createPresenter(this);
+        return presenter;
+    }
+
+    @Override
+    protected MvpView getMvpView() {
+        return this;
+    }
 }
+
+
