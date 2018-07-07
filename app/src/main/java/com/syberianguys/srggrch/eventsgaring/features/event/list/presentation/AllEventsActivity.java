@@ -1,5 +1,6 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.list.presentation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,14 +32,25 @@ public class AllEventsActivity extends AppCompatActivity
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter AdapterEvent;
 
+    boolean f = false;
+
     private ArrayList<Event> events;
+
+    public static void start(Context context, boolean isAuth){
+        final Intent intent = new Intent(context, AllEventsActivity.class);
+        intent.putExtra("isAuth", isAuth);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivity(intent);
+        f = getIntent().getBooleanExtra("isAuth", false);
+        if (!f) {
+            f = true;
+            SignInActivity.start(this);
+        }
 
         setContentView(R.layout.activity_all_events);
         Toolbar toolbar = findViewById(R.id.toolbar);

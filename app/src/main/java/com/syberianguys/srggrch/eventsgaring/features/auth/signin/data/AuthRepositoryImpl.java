@@ -7,9 +7,9 @@ import com.syberianguys.srggrch.eventsgaring.network.Carry;
 import java.util.List;
 
 public class AuthRepositoryImpl implements AuthRepository {
-    private final AuthDataSourceImpl authDataSource;
+    private final AuthDataSource authDataSource;
 
-    public AuthRepositoryImpl(AuthDataSourceImpl authDataSource) {
+    public AuthRepositoryImpl(AuthDataSource authDataSource) {
         this.authDataSource = authDataSource;
     }
 
