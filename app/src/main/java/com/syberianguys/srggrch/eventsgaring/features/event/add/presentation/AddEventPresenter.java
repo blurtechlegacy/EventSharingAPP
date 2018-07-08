@@ -3,11 +3,9 @@ package com.syberianguys.srggrch.eventsgaring.features.event.add.presentation;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.domain.AddEventInteractor;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.AllEventsActivity;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddEventPresenter extends MvpPresenter<AddEventView> {
     private final AddEventInteractor addEventInteractor;

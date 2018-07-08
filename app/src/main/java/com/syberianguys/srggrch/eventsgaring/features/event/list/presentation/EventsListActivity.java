@@ -28,6 +28,7 @@ import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,8 +69,7 @@ public class EventsListActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AddEventActivity.start(getApplicationContext());
             }
         });
 
@@ -136,18 +136,6 @@ public class EventsListActivity extends BaseActivity
 //        }
 //
 //        return super.onOptionsItemSelected(item);
-//    }
-
-//    @Override
-//    protected <T extends MvpView> MvpPresenter<T> getPresenter() {
-//        presenter = PresenterFactory.createPresenter(this);
-//        return presenter;
-//        return null;
-//    }
-//
-//    @Override
-//    protected <T extends MvpView> T getMvpView() {
-//        return null;
 //    }
 
     @SuppressWarnings("StatementWithEmptyBody")

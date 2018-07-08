@@ -19,7 +19,7 @@ import com.syberianguys.srggrch.eventsgaring.features.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.AllEventsActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 import java.util.ArrayList;
 
@@ -107,7 +107,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
             @Override
             public void onClick(View v) {
                 presenter.onAddEventClicked();
-                AllEventsActivity.start(AddEventActivity.this,true);
+                EventsListActivity.start(AddEventActivity.this,true);
 }
         });
 

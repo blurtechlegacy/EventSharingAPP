@@ -1,6 +1,7 @@
 package com.syberianguys.srggrch.eventsgaring.features.core.events;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -73,7 +74,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
         void bind(final Event event){
             eventName.setText(event.getName());
             shortDesription.setText(event.getDescription());
-            eventHost.setText(event.getHost());
+            eventHost.setText(Integer.toString(event.getHost()));
             eventDate.setText(event.getStart());
 
             eventMore.setOnClickListener(new View.OnClickListener() {
