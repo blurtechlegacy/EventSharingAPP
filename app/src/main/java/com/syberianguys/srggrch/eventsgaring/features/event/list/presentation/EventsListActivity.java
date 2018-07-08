@@ -55,11 +55,7 @@ public class EventsListActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        f = getIntent().getBooleanExtra("isAuth", false);
-//        if (!f) {
-//            f = true;
-//            SignInActivity.start(this);
-//        }
+
 
         setContentView(R.layout.activity_all_events);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -104,6 +100,12 @@ public class EventsListActivity extends BaseActivity
         });
         recyclerEvents.setAdapter(adapterEvent);
         recyclerEvents.setLayoutManager(layoutManager);
+
+        f = getIntent().getBooleanExtra("isAuth", false);
+        if (!f) {
+            f = true;
+            SignInActivity.start(this);
+        }
     }
 
     @Override
