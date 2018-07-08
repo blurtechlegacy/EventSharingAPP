@@ -1,7 +1,7 @@
 package com.syberianguys.srggrch.eventsgaring.features.core.events.model;
 
 public class Event {
-    private int id;
+    private String id;
     private String name;
     private String host;
     private String description; //are we need additional var for short description
@@ -11,7 +11,7 @@ public class Event {
     private String end;
     private boolean isAvailable;
 
-    public Event(int id, String host, String eventName, String description, int[] tags, int[] guests, String start, String end) {
+    public Event(String id, String host, String eventName, String description, int[] tags, int[] guests, String start, String end) {
         this.id = id;
         this.host = host;
         this.name = eventName;
@@ -64,7 +64,7 @@ public class Event {
         return guests;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 }
