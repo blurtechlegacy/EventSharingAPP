@@ -62,6 +62,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
+        progressBar = findViewById(R.id.newEvent_progressBar);
         editNameEvent = findViewById(R.id.adding_event_name);
         editHostName = findViewById(R.id.adding_host_name);
         editDescription = findViewById(R.id.adding_event_discription);
@@ -153,6 +154,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
     }
 
 }
