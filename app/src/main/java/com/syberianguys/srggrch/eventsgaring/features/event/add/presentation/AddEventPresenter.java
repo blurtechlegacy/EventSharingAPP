@@ -44,7 +44,10 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onTagSelected(int tag) {
         if(tags.contains(tag)) {
-            tags.remove(tag);
+           // tags.remove(tags.size()-1);
+            for(int i=0;i<tags.size();i++){
+                if(tags.get(i)==tag) tags.remove(i);
+            }
         } else {
             tags.add(tag);
         }
