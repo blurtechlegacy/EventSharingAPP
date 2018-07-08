@@ -89,9 +89,7 @@ public class AllEventsActivity extends AppCompatActivity
         events = new ArrayList<>();
 
         for (int i = 0; i<10; i++){
-            events.add(new Event("example",
-                    "exampleHost", "exampleDescription",
-                    Integer.toString(i)));
+            events.add(new Event());
         }
 
         recyclerEvents = findViewById(R.id.allEvent_recycler_view);

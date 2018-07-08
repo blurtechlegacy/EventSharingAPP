@@ -50,7 +50,7 @@ public class SearchActivity extends BaseActivity implements SearchListView{
 
         for (int i = 0; i<10; i++){
             searchingEvents.add(new Event("example",
-                    "exampleHost", "exampleDescription",
+                    1, "exampleDescription",
                     Integer.toString(i)));
         }
         searchingRecyclerEvents = findViewById(R.id.allEvent_recycler_view);

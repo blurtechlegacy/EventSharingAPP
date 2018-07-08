@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> {
 
-    ArrayList<Event> Events;
+    ArrayList<Event> events;
 
     public AdapterEvent (ArrayList<Event> Events){
-        this.Events = Events;
+        this.events = Events;
     }
 
     @NonNull
@@ -33,10 +33,10 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull AdapterEvent.ViewHolder holder, int position) {
-        holder.eventName.setText(Events.get(position).getEventName());
-        holder.eventHost.setText(Events.get(position).getHost());
-        holder.shortDesription.setText(Events.get(position).getDescriptipon());
-        holder.eventDate.setText(Events.get(position).getDateStart());
+        holder.eventName.setText(events.get(position).getName());
+//        holder.eventHost.setText(events.get(position).getHost());
+        holder.shortDesription.setText(events.get(position).getDescription());
+        holder.eventDate.setText(events.get(position).getStart());
         holder.eventMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +48,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return Events.size();
+        return events.size();
 
     }
 

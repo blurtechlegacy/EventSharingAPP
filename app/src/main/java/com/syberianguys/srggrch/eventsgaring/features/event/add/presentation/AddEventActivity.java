@@ -49,7 +49,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
 
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter addNewEventAdapter;
+    private AdapterTag addNewEventAdapter;
 
     private ArrayList<Tag> tags;
 
@@ -106,7 +106,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
             @Override
             public void onClick(View v) {
                 presenter.onAddEventClicked();
-                AllEventsActivity.start(new AddEventActivity());
+                AllEventsActivity.start(AddEventActivity.this,true);
 }
         });
 

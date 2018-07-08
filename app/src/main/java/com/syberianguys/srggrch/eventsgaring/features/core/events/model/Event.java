@@ -4,58 +4,80 @@ import java.util.ArrayList;
 
 public class Event {
     private int id;
-    private String eventName;
-    private String host;
-    private String descriptipon; //are we need additional var for short description
+    private String name;
+    private int host;
+    private String description; //are we need additional var for short description
     private ArrayList<Integer> tags;
-    private String dateStart;
-    private String dateEnd;
+    private int[] guests;
+    private String start;
+    private String end;
     private boolean isAvailable;
 
-    public Event (String eventName, String host, String description, ArrayList<Integer> tags, String dateStart, String dateEnd) {
-        this.eventName = eventName;
+    public Event(int id, int host, String eventName, String description, ArrayList<Integer> tags, int[] guests, String start, String end) {
+        this.id = id;
         this.host = host;
-        this.descriptipon = description;
+        this.name = eventName;
+        this.description = description;
         this.tags = tags;
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
+        this.guests = guests;
+        this.start = start;
+        this.end = end;
     }
 
-    public Event (String eventName, String host, String description, String dateStart) {
-        this.eventName = eventName;
+    public Event(String name, int host, String description, ArrayList<Integer> tags, String start, String end) {
+        this.name = name;
         this.host = host;
-        this.descriptipon = description;
-       // this.tags = tags;
-        this.dateStart = dateStart;
+        this.description = description;
+        this.tags = tags;
+        this.start = start;
+        this.end = end;
+    }
+
+    public Event(String eventName, int host, String description, String start) {
+        this.name = eventName;
+        this.host = host;
+        this.description = description;
+        // this.tags = tags;
+        this.start = start;
         //this.dateEnd = dateEnd;
     }
 
-
-    public String getEventName() {
-        return eventName;
+    public Event() {
     }
 
-    public String getHost() {
+    public String getName() {
+        return name;
+    }
+
+    public int getHost() {
         return host;
     }
 
-    public String getDescriptipon() {
-        return descriptipon;
+    public String getDescription() {
+        return description;
     }
 
     public ArrayList<Integer> getTags() {
         return tags;
     }
 
-    public String getDateStart() {
-        return dateStart;
+    public String getStart() {
+        return start;
     }
 
-    public String getDateEnd(){
-        return dateEnd;
+    public String getEnd() {
+        return end;
     }
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public int[] getGuests() {
+        return guests;
+    }
+
+    public int getId() {
+        return id;
     }
 }
