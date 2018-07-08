@@ -1,4 +1,4 @@
-package ru.ftc.android.shifttemple.features.ivents.data;
+package ru.ftc.android.shifttemple.features.events.data;
 
 import org.junit.After;
 import org.junit.Before;
@@ -20,11 +20,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-/**
- * Created: samokryl
- * Date: 04.07.18
- * Time: 9:54
- */
 @RunWith(MockitoJUnitRunner.class)
 public class EventsDataSourceImplTest {
 
@@ -41,7 +36,7 @@ public class EventsDataSourceImplTest {
         eventList.add(firstEvent);
         eventList.add(secondEvent);
 
-        listRepository = new IventslistRepositoryImpl(api);
+        listRepository = new EventslistRepositoryImpl(api);
     }
 
     @After
@@ -53,11 +48,11 @@ public class EventsDataSourceImplTest {
     public void loadEvents() {
         Carry<List<Event>> carry = mock(Carry.class);
         Call<Wrapper<List<Ivent>>> listWrapper = mock(Call.class);
-        when(api.loadIventList()).thenReturn(listWrapper);
+        when(api.loadEventList()).thenReturn(listWrapper);
 
-        listRepository.loadIvents(carry);
+        listRepository.loadEvents(carry);
 
-        verify(api).loadIventList();
+        verify(api).loadEventList();
     }
 
     @Test
@@ -66,31 +61,31 @@ public class EventsDataSourceImplTest {
         Call<Wrapper<Event>> wrapper = mock(Call.class);
         when(api.getEvent(eventId)).thenReturn(wrapper);
 
-        ListDataSource.getEvent(eventId, carry);
+        DataSource.getEvent(eventId, carry);
 
         verify(api).getEvent(eventId);
 
     }
     
     @Test
-    public void createIvent() {
-        Carry<Ivent> carry = mock(Carry.class);
-        Call<Wrapper<Ivent>> wrapper = mock(Call.class);
-        when(api.createIvent(secondIvent)).thenReturn(wrapper);
+    public void createEvent() {
+        Carry<Event> carry = mock(Carry.class);
+        Call<Wrapper<Event>> wrapper = mock(Call.class);
+        when(api.createEvent(secondEvent)).thenReturn(wrapper);
 
-        dataSource.createIvent(secondIvent, carry);
+        dataSource.createEvent(secondEvent, carry);
 
-        verify(api).createIvent(secondIvent);
+        verify(api).createEvent(secondEvent);
     }
 
     @Test
-    public void deleteIvent() {
+    public void deleteEvent() {
         Carry<Success> carry = mock(Carry.class);
         Call<Wrapper<Success>> wrapper = mock(Call.class);
-        when(api.deleteIvent(iventId)).thenReturn(wrapper);
+        when(api.deleteEvent(eventId)).thenReturn(wrapper);
 
-        dataSource.deleteIvent(iventId, carry);
+        dataSource.deleteEvent(eventId, carry);
 
-        verify(api).deleteIvent(iventId);
+        verify(api).deleteEvent(eventId);
     }
 }
