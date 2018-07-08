@@ -104,7 +104,7 @@ public class EventsListActivity extends BaseActivity
         f = getIntent().getBooleanExtra("isAuth", false);
         if (!f) {
             f = true;
-            SignInActivity.start(this);
+            SignInActivity.start(EventsListActivity.this);
         }
     }
 

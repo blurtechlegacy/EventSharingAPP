@@ -61,7 +61,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
             @Override
             public void onClick(View v) {
                 //resenter.onSignInClicked();
-                EventsListActivity.start(getApplicationContext(), true);
+                EventsListActivity.start(SignInActivity.this, true);
             }
         });
 
