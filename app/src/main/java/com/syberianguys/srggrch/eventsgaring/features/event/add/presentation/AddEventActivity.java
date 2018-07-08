@@ -30,7 +30,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
     */
     AddEventPresenter presenter;
 
-   private ProgressBar progressBar;
+   //private ProgressBar progressBar;
 
     public static void start(Context context){
         final Intent intent = new Intent(context, AddEventActivity.class);
@@ -62,7 +62,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
-        progressBar = findViewById(R.id.newEvent_progressBar);
+        //progressBar = findViewById(R.id.newEvent_progressBar);
         editNameEvent = findViewById(R.id.adding_event_name);
         editHostName = findViewById(R.id.adding_host_name);
         editDescription = findViewById(R.id.adding_event_discription);
@@ -143,12 +143,12 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
     //AddEventView methods
     @Override
     public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
+      //  progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-        progressBar.setVisibility(View.GONE);
+      //  progressBar.setVisibility(View.GONE);
     }
 
     @Override
