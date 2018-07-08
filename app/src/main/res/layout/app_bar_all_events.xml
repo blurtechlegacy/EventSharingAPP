@@ -13,24 +13,22 @@
         >
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" >
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:layout_gravity="right"
+            >
 
         <android.support.v7.widget.SearchView
             android:id="@+id/serch_view_app"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:gravity="right"
             />
         </android.support.v7.widget.Toolbar>
 
 
-        <SearchView android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right"
-            />
         </android.support.design.widget.AppBarLayout>
 
 
