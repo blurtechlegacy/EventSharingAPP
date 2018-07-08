@@ -1,17 +1,19 @@
 package com.syberianguys.srggrch.eventsgaring.features.core.events.model;
 
+import java.util.ArrayList;
+
 public class Event {
     private String id;
     private String name;
-    private String host;
+    private int host;
     private String description; //are we need additional var for short description
-    private int[] tags;
+    private ArrayList<Integer> tags;
     private int[] guests;
     private String start;
     private String end;
     private boolean isAvailable;
 
-    public Event(String id, String host, String eventName, String description, int[] tags, int[] guests, String start, String end) {
+    public Event(String id, int host, String eventName, String description, ArrayList<Integer> tags, int[] guests, String start, String end) {
         this.id = id;
         this.host = host;
         this.name = eventName;
@@ -22,7 +24,16 @@ public class Event {
         this.end = end;
     }
 
-    public Event(String eventName, String host, String description, String start) {
+    public Event(String name, int host, String description, ArrayList<Integer> tags, String start, String end) {
+        this.name = name;
+        this.host = host;
+        this.description = description;
+        this.tags = tags;
+        this.start = start;
+        this.end = end;
+    }
+
+    public Event(String eventName, int host, String description, String start) {
         this.name = eventName;
         this.host = host;
         this.description = description;
@@ -31,12 +42,14 @@ public class Event {
         //this.dateEnd = dateEnd;
     }
 
+    public Event() {
+    }
 
     public String getName() {
         return name;
     }
 
-    public String getHost() {
+    public int getHost() {
         return host;
     }
 
@@ -44,7 +57,7 @@ public class Event {
         return description;
     }
 
-    public int[] getTags() {
+    public ArrayList<Integer> getTags() {
         return tags;
     }
 
