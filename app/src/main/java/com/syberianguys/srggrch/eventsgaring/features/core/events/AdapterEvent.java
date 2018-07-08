@@ -1,5 +1,6 @@
 package com.syberianguys.srggrch.eventsgaring.features.core.events;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,61 +13,80 @@ import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> {
+public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder> {
 
-    ArrayList<Event> Events;
+    private final List<Event> events = new ArrayList<>();
+    private final LayoutInflater inflater;
+    SelectEventListener selectEventListener;
 
-    public AdapterEvent (ArrayList<Event> Events){
-        this.Events = Events;
+
+    public AdapterEvent (Context context, SelectEventListener selectEventListener){
+        inflater = LayoutInflater.from(context);
+        this.selectEventListener = selectEventListener;
     }
 
     @NonNull
     @Override
-    public AdapterEvent.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_event, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-
-        return vh;
+    public EventHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        final View itemView = inflater.inflate(R.layout.item_event, parent, false);
+        return new EventHolder(itemView, selectEventListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterEvent.ViewHolder holder, int position) {
-        holder.eventName.setText(Events.get(position).getEventName());
-        holder.eventHost.setText(Events.get(position).getHost());
-        holder.shortDesription.setText(Events.get(position).getDescriptipon());
-        holder.eventDate.setText(Events.get(position).getDateStart());
-        holder.eventMore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // something happening
-            }
-        });
+    public void onBindViewHolder(@NonNull EventHolder holder, int position) {
+        holder.bind(events.get(position));
 
     }
+
+    public void setEvents(List<Event> eventList){
+        events.clear();
+        events.addAll(eventList);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     public int getItemCount() {
-        return Events.size();
+        return events.size();
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView eventName;
-        public TextView eventHost;
-        public TextView shortDesription;
-        public TextView eventDate;
-        public Button eventMore;
+    public class EventHolder extends RecyclerView.ViewHolder {
+        private final TextView eventName;
+        private final TextView eventHost;
+        private final TextView shortDesription;
+        private final TextView eventDate;
+        private final Button eventMore;
+        private final SelectEventListener selectEventListener;
 
-        public ViewHolder(View itemView) {
+        EventHolder(View itemView, SelectEventListener selectEventListener) {
             super(itemView);
+            this.selectEventListener = selectEventListener;
             eventName = itemView.findViewById(R.id.item_element_textView_eventName);
             eventDate = itemView.findViewById(R.id.item_element_textView_eventDate);
             eventHost = itemView.findViewById(R.id.item_element_textView_eventHost);
             shortDesription = itemView.findViewById(R.id.item_element_textView_shortDescription);
             eventMore = itemView.findViewById(R.id.item_element_eventMore);
         }
+        void bind(final Event event){
+            eventName.setText(event.getName());
+            shortDesription.setText(event.getDescription());
+            eventHost.setText(event.getHost());
+            eventDate.setText(event.getStart());
 
+            eventMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    selectEventListener.onEventSelected(event);
+                }
+            });
+        }
+
+    }
+
+    public interface SelectEventListener{
+        void onEventSelected(Event event);
     }
 }

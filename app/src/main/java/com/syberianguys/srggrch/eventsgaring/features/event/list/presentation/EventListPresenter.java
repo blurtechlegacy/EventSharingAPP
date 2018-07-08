@@ -14,6 +14,11 @@ public class EventListPresenter extends MvpPresenter<EventListView>{
         this.listInteractor = listInteractor;
     }
 
+    @Override
+    protected void onViewReady() {
+        loadEvents();
+    }
+
     private void loadEvents(){
         view.showProgress();
         listInteractor.loadEvents(new Carry<List<Event>>() {
@@ -29,5 +34,8 @@ public class EventListPresenter extends MvpPresenter<EventListView>{
                 view.showError(throwable.toString());
             }
         });
+    }
+    public void onEventSelected(Event event){
+        //Full Description
     }
 }

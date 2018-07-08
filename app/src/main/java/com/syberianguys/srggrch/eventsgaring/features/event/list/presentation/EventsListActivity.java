@@ -16,7 +16,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Adapter;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
@@ -27,17 +30,17 @@ import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public abstract class EventsListActivity extends BaseActivity
+public class EventsListActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, EventListView {
 
     private RecyclerView recyclerEvents;
+    private ProgressBar progressBar;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapterEvent;
+    private AdapterEvent adapterEvent;
 
     private boolean f = false;
-
-    private ArrayList<Event> events;
 
     private EventListPresenter presenter;
 
@@ -51,11 +54,11 @@ public abstract class EventsListActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        f = getIntent().getBooleanExtra("isAuth", false);
-        if (!f) {
-            f = true;
-            SignInActivity.start(this);
-        }
+//        f = getIntent().getBooleanExtra("isAuth", false);
+//        if (!f) {
+//            f = true;
+//            SignInActivity.start(this);
+//        }
 
         setContentView(R.layout.activity_all_events);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -83,28 +86,24 @@ public abstract class EventsListActivity extends BaseActivity
 
 
 
-        events = new ArrayList<>();
 
-        for (int i = 0; i<10; i++){
-            events.add(new Event("example",
-                    "exampleHost", "exampleDescription",
-                    Integer.toString(i)));
-        }
+//        for (int i = 0; i<10; i++){
+//            events.add(new Event("example",
+//                    "exampleHost", "exampleDescription",
+//                    Integer.toString(i)));
+//        }
 
+        progressBar = findViewById(R.id.allEvent_progressBar);
         recyclerEvents = findViewById(R.id.allEvent_recycler_view);
         layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
-        adapterEvent = new AdapterEvent(events);
-        recyclerEvents.setLayoutManager(layoutManager);
-        recyclerEvents.setAdapter(adapterEvent);
-
-        recyclerEvents.setOnLongClickListener(new RecyclerView.OnLongClickListener() {
+        adapterEvent = new AdapterEvent(this, new AdapterEvent.SelectEventListener() {
             @Override
-            public boolean onLongClick(View v) {
-                return false;
+            public void onEventSelected(Event event) {
+                presenter.onEventSelected(event);
             }
         });
-
-        //adapterEvent
+        recyclerEvents.setAdapter(adapterEvent);
+        recyclerEvents.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -170,6 +169,28 @@ public abstract class EventsListActivity extends BaseActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerEvents.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgress() {
+        progressBar.setVisibility(View.GONE);
+        recyclerEvents.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showEventList(List<Event> list) {
+        adapterEvent.setEvents(list);
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     @Override
