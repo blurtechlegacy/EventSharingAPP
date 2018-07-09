@@ -12,7 +12,7 @@ import com.syberianguys.srggrch.eventsgaring.features.event.list.domain.ListInte
 import com.syberianguys.srggrch.eventsgaring.features.event.list.domain.ListInteractorImpl;
 
 public class EventListPresenterFactory {
-    static EventListPresenter createPresenter(Context context){
+    public static EventListPresenter createPresenter(Context context){
         final ListApi listApi = App.getRetrofitProvider(context)
                 .getRetrofit()
                 .create(ListApi.class);

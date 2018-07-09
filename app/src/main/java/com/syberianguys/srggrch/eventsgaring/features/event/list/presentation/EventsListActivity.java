@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,6 +30,7 @@ import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.S
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,32 +82,26 @@ public class EventsListActivity extends BaseActivity
 
         //------------------------------------------------------------------------------------------
 
-
-
-
-//        for (int i = 0; i<10; i++){
-//            events.add(new Event("example",
-//                    "exampleHost", "exampleDescription",
-//                    Integer.toString(i)));
-//        }
-
         progressBar = findViewById(R.id.allEvent_progressBar);
         recyclerEvents = findViewById(R.id.allEvent_recycler_view);
         layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
         adapterEvent = new AdapterEvent(this, new AdapterEvent.SelectEventListener() {
             @Override
             public void onEventSelected(Event event) {
-                presenter.onEventSelected(event);
+                //presenter.onEventSelected(event);
+                FullEventActivity.start(EventsListActivity.this, event.getId());
+                Log.e("Event selected", event.getId());
             }
         });
         recyclerEvents.setAdapter(adapterEvent);
         recyclerEvents.setLayoutManager(layoutManager);
 
-        f = getIntent().getBooleanExtra("isAuth", false);
-        if (!f) {
-            f = true;
-            SignInActivity.start(EventsListActivity.this);
-        }
+
+//        f = getIntent().getBooleanExtra("isAuth", false);
+//        if (!f) {
+//            f = true;
+//            SignInActivity.start(EventsListActivity.this);
+//        }
     }
 
     @Override

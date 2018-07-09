@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".features.event.add.presentation.AddEventActivity" />
         <activity android:name=".features.auth.signin.presentation.SignInActivity" />
+        <activity android:name=".features.event.full.presentation.FullEventActivity" />
     </application>
 
 </manifest>
