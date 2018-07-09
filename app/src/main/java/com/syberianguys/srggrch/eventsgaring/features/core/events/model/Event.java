@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Event {
     private String id;
     private String name;
+    private String host_name;
     private int host;
     private String description; //are we need additional var for short description
     private ArrayList<Integer> tags;
@@ -24,8 +25,9 @@ public class Event {
         this.end = end;
     }
 
-    public Event(String name, int host, String description, ArrayList<Integer> tags, String start, String end) {
+    public Event(String name,String host_name, int host, String description, ArrayList<Integer> tags, String start, String end) {
         this.name = name;
+        this.host_name = host_name;
         this.host = host;
         this.description = description;
         this.tags = tags;
@@ -44,6 +46,8 @@ public class Event {
 
     public Event() {
     }
+
+    public String getHost_name() { return host_name; }
 
     public String getName() {
         return name;

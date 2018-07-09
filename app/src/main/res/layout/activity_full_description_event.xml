@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".features.event.full.FullDescriptionEventActivity">
+    tools:context=".features.event.full.presentation.FullEventActivity">
  <android.support.constraint.ConstraintLayout
      android:layout_width="match_parent"
      android:layout_height="wrap_content">

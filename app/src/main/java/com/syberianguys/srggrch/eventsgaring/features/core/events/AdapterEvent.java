@@ -74,7 +74,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
         void bind(final Event event){
             eventName.setText(event.getName());
             shortDesription.setText(event.getDescription());
-            eventHost.setText(Integer.toString(event.getHost()));
+            eventHost.setText(event.getHost_name());
             eventDate.setText(event.getStart());
 
             eventMore.setOnClickListener(new View.OnClickListener() {
