@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_allEvents"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_all_events"
             android:title="All Events" />
         <item
             android:id="@+id/nav_myEvents"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_share"
             android:title="My Events" />
         <item
             android:id="@+id/nav_assignedEvents"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_assigned_events"
             android:title="Assigned Events" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_settings"
             android:title="Settings" />
     </group>
 
