@@ -28,7 +28,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
    /*
    must be extended by BaseActivity
     */
-    AddEventPresenter presenter;
+    private AddEventPresenter presenter;
 
    //private ProgressBar progressBar;
 
@@ -43,7 +43,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
     private EditText editDescription;
     private EditText startEvent;
     private EditText endEvent;
-    private Button addEventButton;
+    private Button   addEventButton;
 
 
 
@@ -53,7 +53,7 @@ public final class AddEventActivity    extends BaseActivity implements AddEventV
 
     private ArrayList<Tag> tags;
 
-   // private AddEventActivity activity = this;//каастыль
+
 
 
 

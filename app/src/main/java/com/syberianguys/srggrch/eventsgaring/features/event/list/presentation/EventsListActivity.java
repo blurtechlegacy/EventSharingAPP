@@ -97,11 +97,11 @@ public class EventsListActivity extends BaseActivity
         recyclerEvents.setLayoutManager(layoutManager);
 
 
-//        f = getIntent().getBooleanExtra("isAuth", false);
-//        if (!f) {
-//            f = true;
-//            SignInActivity.start(EventsListActivity.this);
-//        }
+        f = getIntent().getBooleanExtra("isAuth", false);
+        if (!f) {
+            f = true;
+            SignInActivity.start(EventsListActivity.this);
+        }
     }
 
     @Override
