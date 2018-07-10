@@ -13,6 +13,7 @@ import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.core.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
+import com.syberianguys.srggrch.eventsgaring.features.reg.presenter.RegActivity;
 
 
 public class SignInActivity extends BaseActivity implements SignInView{
@@ -62,6 +63,12 @@ public class SignInActivity extends BaseActivity implements SignInView{
             public void onClick(View v) {
                 //resenter.onSignInClicked();
                 EventsListActivity.start(SignInActivity.this, true);
+            }
+        });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegActivity.start(SignInActivity.this);
             }
         });
 
