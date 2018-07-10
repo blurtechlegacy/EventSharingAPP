@@ -53,9 +53,6 @@ public final class RegActivity extends BaseActivity implements RegView{
         editBirthday = findViewById(R.id.birthday);
         regButton = findViewById(R.id.sign_up_but);
 
-        Dialog dialog = new Dialog(this);
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        dialog.setContentView(R.layout.activity_registration);
 
         editNameUser.addTextChangedListener(new DefaultTextWatcher() {
             @Override
