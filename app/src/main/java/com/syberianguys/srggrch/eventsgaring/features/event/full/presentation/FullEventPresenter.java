@@ -10,7 +10,7 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
     private final FullEventInteracor fullEventInteracor;
     private String id;
 
-    private FullEventPresenter(FullEventInteracor fullEventInteracor) {
+    public FullEventPresenter(FullEventInteracor fullEventInteracor) {
         this.fullEventInteracor = fullEventInteracor;
     }
 
