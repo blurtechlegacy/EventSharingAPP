@@ -24,13 +24,13 @@ public class SignInActivity extends BaseActivity implements SignInView{
     Button signUp;
 
 
-    private static final boolean isAuthAc = false;
+    //private static final boolean isAuthAc = false;
 
     SignInPresenter presenter;
 
     public static void start(Context context){
         final Intent intent = new Intent(context, SignInActivity.class);
-        //intent.putExtra(String.valueOf(isAuthAc), isAuth);
+        //intent.putExtra("isAuth", isAuthAc);
         context.startActivity(intent);
     }
 
@@ -61,7 +61,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //resenter.onSignInClicked();
+                //presenter.onSignInClicked();
                 EventsListActivity.start(SignInActivity.this, true);
             }
         });
@@ -73,6 +73,11 @@ public class SignInActivity extends BaseActivity implements SignInView{
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //
     }
 
     @Override

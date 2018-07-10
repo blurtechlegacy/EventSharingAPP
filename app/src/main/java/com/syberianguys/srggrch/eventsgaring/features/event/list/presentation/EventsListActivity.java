@@ -44,8 +44,6 @@ public class EventsListActivity extends BaseActivity
     private RecyclerView.LayoutManager layoutManager;
     private AdapterEvent adapterEvent;
 
-    private boolean f = false;
-
     private EventListPresenter presenter;
 
     public static void start(Context context, boolean isAuth){
@@ -98,7 +96,7 @@ public class EventsListActivity extends BaseActivity
         recyclerEvents.setLayoutManager(layoutManager);
 
 
-        f = getIntent().getBooleanExtra("isAuth", false);
+        boolean f = getIntent().getBooleanExtra("isAuth", false);
         if (!f) {
             f = true;
             SignInActivity.start(EventsListActivity.this);
@@ -111,7 +109,7 @@ public class EventsListActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed(); нельзя вернуться на SignInActivity!
         }
     }
 

@@ -10,7 +10,6 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:inputType="text"
             android:id="@+id/adding_event_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,7 +23,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:inputType="text"
             android:id="@+id/adding_host_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +36,6 @@
             app:layout_constraintTop_toBottomOf="@+id/adding_event_name" />
 
         <EditText
-            android:inputType="text"
             android:id="@+id/adding_event_discription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

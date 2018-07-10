@@ -14,6 +14,13 @@
     <string name="add_event">add event</string>
     <string name="event_place">Event place</string>
     <string name="want_to_go">Want to go</string>
+    <string name="name">name</string>
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="repeat_password">repeat password</string>
+    <string name="your_gender">your gender</string>
+    <string name="birthday">birthday</string>
+    <string name="sign_up">sign up</string>
     <string-array name="sexlist">
         <item>male</item>
         <item>female</item>
