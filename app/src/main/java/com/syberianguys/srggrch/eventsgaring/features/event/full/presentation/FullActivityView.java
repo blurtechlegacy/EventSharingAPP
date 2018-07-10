@@ -7,6 +7,10 @@ import java.util.List;
 
 public interface FullActivityView extends MvpView {
 
+    void showProgress();
+
+    void hideProgress();
+
     void showEvent(Event event);
 
     void showError(String message);

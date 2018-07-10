@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +24,8 @@ import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.Ev
 
 public class FullEventActivity extends BaseActivity implements FullActivityView {
 
-    FullEventPresenter presenter;
-
+    private FullEventPresenter presenter;
+    private ProgressBar progressBar;
 
     TextView nameEvent ;
     TextView nameHost;
@@ -38,7 +40,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     public static void start (Context context, String id){
         final Intent intent = new Intent(context, FullEventActivity.class);
         intent.putExtra("Event_id", id);
-        Log.e("FullEventActivity", "Tru to start");
+        Log.e("FullEventActivity", "Try to start");
         context.startActivity(intent);
     }
 
@@ -47,7 +49,10 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_description_event);
 
+
+        progressBar = findViewById(R.id.full_event_progressBar);
         Log.e("FullEventActivity", "Started");
+
         nameEvent = findViewById(R.id.name_event);
         nameHost = findViewById(R.id.name_host);
         fullDescription = findViewById(R.id.event_description);
@@ -73,6 +78,30 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     @Override
     protected  MvpView getMvpView() {
         return this;
+    }
+
+    @Override
+    public void showProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+        nameHost.setVisibility(View.GONE);
+        nameEvent.setVisibility(View.GONE);
+        place.setVisibility(View.GONE);
+        fullDescription.setVisibility(View.GONE);
+        date.setVisibility(View.GONE);
+        wantToGoBut.setVisibility(View.GONE);
+        eventImage.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideProgress() {
+        place.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+        nameHost.setVisibility(View.VISIBLE);
+        nameEvent.setVisibility(View.VISIBLE);
+        fullDescription.setVisibility(View.VISIBLE);
+        date.setVisibility(View.VISIBLE);
+        wantToGoBut.setVisibility(View.VISIBLE);
+        eventImage.setVisibility(View.VISIBLE);
     }
 
     @Override
