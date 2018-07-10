@@ -1,9 +1,11 @@
 package com.syberianguys.srggrch.eventsgaring.features.reg.presenter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,6 +52,10 @@ public final class RegActivity extends BaseActivity implements RegView{
         sexList = findViewById(R.id.sex_spinner);
         editBirthday = findViewById(R.id.birthday);
         regButton = findViewById(R.id.sign_up_but);
+
+        Dialog dialog = new Dialog(this);
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        dialog.setContentView(R.layout.activity_registration);
 
         editNameUser.addTextChangedListener(new DefaultTextWatcher() {
             @Override
