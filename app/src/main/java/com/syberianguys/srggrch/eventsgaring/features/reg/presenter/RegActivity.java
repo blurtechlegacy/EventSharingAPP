@@ -32,7 +32,7 @@ public final class RegActivity extends BaseActivity implements RegView{
 
 
     private RegPresenter presenter;
-    public static boolean a=true;
+    public static boolean a=true; // чет как-то хз
 
 
     public static void start(Context context){
@@ -95,12 +95,8 @@ public final class RegActivity extends BaseActivity implements RegView{
      sexList.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
          @Override
          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-             switch (position){
-                 case 0: presenter.setUserGender(UserGender.MALE);
-                        break;
-                 case 1: presenter.setUserGender(UserGender.FEMALE);
-                        break;
-             }
+          UserGender result = position == 1 ? UserGender.FEMALE : UserGender.MALE;
+           presenter.setUserGender(result);
          }
 
          @Override

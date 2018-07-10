@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.widget.Adapter;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.syberianguys.srggrch.eventsgaring.R;
@@ -43,6 +45,8 @@ public class EventsListActivity extends BaseActivity
     private ProgressBar progressBar;
     private RecyclerView.LayoutManager layoutManager;
     private AdapterEvent adapterEvent;
+
+    private boolean f = false;
 
     private EventListPresenter presenter;
 
@@ -96,7 +100,7 @@ public class EventsListActivity extends BaseActivity
         recyclerEvents.setLayoutManager(layoutManager);
 
 
-        boolean f = getIntent().getBooleanExtra("isAuth", false);
+        f = getIntent().getBooleanExtra("isAuth", false);
         if (!f) {
             f = true;
             SignInActivity.start(EventsListActivity.this);
@@ -109,9 +113,35 @@ public class EventsListActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            //super.onBackPressed(); нельзя вернуться на SignInActivity!
+            super.onBackPressed();
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+        switch (id){
+            case R.id.search_event : return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -165,11 +195,6 @@ public class EventsListActivity extends BaseActivity
     @Override
     protected MvpView getMvpView() {
         return this;
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
     }
 }
 
