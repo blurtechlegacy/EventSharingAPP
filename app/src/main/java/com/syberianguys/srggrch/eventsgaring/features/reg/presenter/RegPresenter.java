@@ -38,7 +38,7 @@ public class RegPresenter extends MvpPresenter<RegView>{
         });
         }
         else{
-           RegActivity.a = false;
+         //  RegActivity.a = false;
            view.showError("password and repeat password must be eqvivalent");
         }
     }

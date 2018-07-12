@@ -32,13 +32,13 @@ public final class RegActivity extends BaseActivity implements RegView{
 
 
     private RegPresenter presenter;
-    public static boolean a=true; // чет как-то хз
+    //public static boolean a=true; // чет как-то хз
 
 
     public static void start(Context context){
         final Intent intent = new Intent(context, RegActivity.class);
         //intent.putExtra("isAuth", isAuth);
-       context.startActivity(intent);//хз
+       context.startActivity(intent);
     }
 @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +88,8 @@ public final class RegActivity extends BaseActivity implements RegView{
             @Override
             public void onClick(View v) {
                 presenter.onRegButClicked();
-                if(a==true)      EventsListActivity.start(RegActivity.this,a);
+                //if(a==true)
+                    EventsListActivity.start(RegActivity.this,true);
 
             }
         });
