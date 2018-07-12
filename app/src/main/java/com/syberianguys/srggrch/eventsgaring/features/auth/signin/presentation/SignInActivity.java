@@ -25,7 +25,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
     EditText pass;
     Button signIn;
     Button signUp;
-
+    Boolean isAuth = false;
 
     //private static final boolean isAuthAc = false;
 
@@ -79,12 +79,15 @@ public class SignInActivity extends BaseActivity implements SignInView{
 
     @Override
     public void onBackPressed() {
-        //
+        if (isAuth) super.onBackPressed();
     }
 
     @Override
     public void authOk() {
-        EventsListActivity.start(SignInActivity.this, true);
+        //EventsListActivity.start(SignInActivity.this, true);
+        isAuth = true;
+        onBackPressed();
+
     }
 
     //@SuppressLint("ShowToast")
