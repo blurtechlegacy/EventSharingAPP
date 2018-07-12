@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -41,6 +42,7 @@ public class EventsListActivity extends BaseActivity
     private ProgressBar progressBar;
     private RecyclerView.LayoutManager layoutManager;
     private AdapterEvent adapterEvent;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private EventListPresenter presenter;
 
@@ -79,6 +81,7 @@ public class EventsListActivity extends BaseActivity
 
         //------------------------------------------------------------------------------------------
 
+        swipeRefreshLayout = findViewById(R.id.event_list_swiperefresh);
         progressBar = findViewById(R.id.allEvent_progressBar);
         recyclerEvents = findViewById(R.id.allEvent_recycler_view);
         layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
@@ -90,6 +93,15 @@ public class EventsListActivity extends BaseActivity
                 Log.e("Event selected", event.getId());
             }
         });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.onRefresh();
+            }
+        });
+
+
         recyclerEvents.setAdapter(adapterEvent);
         recyclerEvents.setLayoutManager(layoutManager);
 
@@ -183,6 +195,7 @@ public class EventsListActivity extends BaseActivity
     public void hideProgress() {
         progressBar.setVisibility(View.GONE);
         recyclerEvents.setVisibility(View.VISIBLE);
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
