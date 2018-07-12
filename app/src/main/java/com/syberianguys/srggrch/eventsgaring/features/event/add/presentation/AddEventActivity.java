@@ -5,7 +5,6 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -14,7 +13,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,7 +22,6 @@ import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
-import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 import java.util.ArrayList;
@@ -90,21 +87,17 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
         startEvent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                setDate();
-                setInitialDateTime(startEvent);
+            public void onClick(View v) {
+                setDateStart();
             }
         });
 
         endEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setDate();
-                setInitialDateTime(endEvent);
+                setDateEnd();
             }
         });
-
-
 
 
         addEventButton.setOnClickListener(new View.OnClickListener() {
@@ -133,51 +126,6 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         recyclerTags.setAdapter(addNewEventAdapter);
     }
 
-    DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            dateAndTime.set(Calendar.YEAR, year);
-            dateAndTime.set(Calendar.MONTH, monthOfYear);
-            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setTime();
-        }
-    };
-
-    TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                dateAndTime.set(Calendar.MINUTE, minute);
-            }
-
-    };
-
-
-
-    private void setInitialDateTime(TextView textView) {
-
-        textView.setText(DateUtils.formatDateTime(this,
-                dateAndTime.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
-                        | DateUtils.FORMAT_SHOW_TIME));
-    }
-
-    public void setTime() {
-        new TimePickerDialog(AddEventActivity.this, timeSetListener,
-                dateAndTime.get(Calendar.HOUR_OF_DAY),
-                dateAndTime.get(Calendar.MINUTE), true)
-                .show();
-
-    }
-
-    public void setDate() {
-        new DatePickerDialog(AddEventActivity.this, dateSetListener,
-                dateAndTime.get(Calendar.YEAR),
-                dateAndTime.get(Calendar.MONTH),
-                dateAndTime.get(Calendar.DAY_OF_MONTH))
-                .show();
-       // setTime(v);
-    }
 
     //BaseActivity methods
     @Override
@@ -206,6 +154,100 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
+    }
+
+    DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateAndTime.set(Calendar.YEAR, year);
+            dateAndTime.set(Calendar.MONTH, monthOfYear);
+            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            setTimeEnd();
+        }
+    };
+
+    TimePickerDialog.OnTimeSetListener timeSetListenerEnd = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            dateAndTime.set(Calendar.MINUTE, minute);
+            setInitialDateTimeEnd();
+        }
+
+    };
+
+
+    private void setInitialDateTimeEnd() {
+
+
+        endEvent.setText(DateUtils.formatDateTime(this,
+                dateAndTime.getTimeInMillis(),
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+                        | DateUtils.FORMAT_SHOW_TIME));
+
+
+    }
+
+    public void setTimeEnd() {
+        new TimePickerDialog(AddEventActivity.this, timeSetListenerEnd,
+                dateAndTime.get(Calendar.HOUR_OF_DAY),
+                dateAndTime.get(Calendar.MINUTE), true)
+                .show();
+
+    }
+
+    public void setDateEnd() {
+        new DatePickerDialog(AddEventActivity.this, dateSetListenerEnd,
+                dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH))
+                .show();
+        // setTimeEnd(v);
+    }
+
+    DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateAndTime.set(Calendar.YEAR, year);
+            dateAndTime.set(Calendar.MONTH, monthOfYear);
+            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            setTimeStart();
+        }
+    };
+
+    TimePickerDialog.OnTimeSetListener timeSetListenerStart = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            dateAndTime.set(Calendar.MINUTE, minute);
+            setInitialDateTimeStart();
+        }
+
+    };
+
+
+    private void setInitialDateTimeStart() {
+
+        startEvent.setText(DateUtils.formatDateTime(this,
+                dateAndTime.getTimeInMillis(),
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+                        | DateUtils.FORMAT_SHOW_TIME));
+    }
+
+    public void setTimeStart() {
+        new TimePickerDialog(AddEventActivity.this, timeSetListenerStart,
+                dateAndTime.get(Calendar.HOUR_OF_DAY),
+                dateAndTime.get(Calendar.MINUTE), true)
+                .show();
+
+    }
+
+    public void setDateStart() {
+        new DatePickerDialog(AddEventActivity.this, dateSetListenerStart,
+                dateAndTime.get(Calendar.YEAR),
+                dateAndTime.get(Calendar.MONTH),
+                dateAndTime.get(Calendar.DAY_OF_MONTH))
+                .show();
     }
 
 }
