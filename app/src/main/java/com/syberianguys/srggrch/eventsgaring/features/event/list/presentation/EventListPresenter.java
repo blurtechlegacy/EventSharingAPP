@@ -7,7 +7,7 @@ import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 import java.util.List;
 
-public class EventListPresenter extends MvpPresenter<EventListView>{
+public class EventListPresenter extends MvpPresenter<EventListView> {
     private ListInteractor listInteractor;
     private String searchString;
 
@@ -22,11 +22,11 @@ public class EventListPresenter extends MvpPresenter<EventListView>{
 
     //srggrch<3
 
-    public  boolean isAuth(){
+    public boolean isAuth() {
         return listInteractor.isAuth();
     }
 
-    private void loadEvents(){
+    private void loadEvents() {
         view.showProgress();
         listInteractor.loadEvents(new Carry<List<Event>>() {
             @Override
@@ -42,12 +42,18 @@ public class EventListPresenter extends MvpPresenter<EventListView>{
             }
         });
     }
-    public void onEventSelected(Event event){
+
+    public void onRefresh() {
+        loadEvents();
+    }
+
+    public void onEventSelected(Event event) {
         //Full Description
     }
+
     //searching methods
-    public void startSearching(){
-       listInteractor.loadSearchEvents(searchString, new Carry<List<Event>>() {
+    public void startSearching() {
+        listInteractor.loadSearchEvents(searchString, new Carry<List<Event>>() {
             @Override
             public void onSuccess(List<Event> result) {
                 view.showEventList(result);
@@ -61,9 +67,10 @@ public class EventListPresenter extends MvpPresenter<EventListView>{
             }
         });
     }
-    public void onSearchedTextChanged(String searchString){
+
+    public void onSearchedTextChanged(String searchString) {
         this.searchString = searchString;
-        if(this.searchString.equals("")) loadEvents();
+        if (this.searchString.equals("")) loadEvents();
         else startSearching();
     }
 }
