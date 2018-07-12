@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface AuthRepository {
 
-    void loadUser(String id, Carry<User> carry);
-
-    void auth(UserAuth userAuth, Carry<UserAuth> carry);
+    void auth(UserAuth userAuth, Carry<User> carry);
 
 }

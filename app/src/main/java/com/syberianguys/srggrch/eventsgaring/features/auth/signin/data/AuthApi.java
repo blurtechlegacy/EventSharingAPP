@@ -11,9 +11,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface AuthApi {
-    @POST("users/")
-    Call<Wrapper<UserAuth>> CheckUser (@Body UserAuth userAuth);
+    @POST("users/auth")
+    Call<Wrapper<User>> CheckUser (@Body UserAuth userAuth);
 
-    @GET("users/{id}")
-    Call<Wrapper<User>> GetUser (@Path("id") String id);
 }

@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".App"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+
+        >
         <activity
             android:name=".features.event.list.presentation.EventsListActivity"
             android:label="@string/app_name"
@@ -22,9 +24,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.event.add.presentation.AddEventActivity" />
+        <activity android:name=".features.event.add.presentation.AddEventActivity"
+            android:windowSoftInputMode="adjustPan"
+            />
         <activity android:name=".features.auth.signin.presentation.SignInActivity" />
         <activity android:name=".features.event.full.presentation.FullEventActivity" />
+        <activity android:name=".features.reg.presenter.RegActivity"></activity>
     </application>
 
 </manifest>

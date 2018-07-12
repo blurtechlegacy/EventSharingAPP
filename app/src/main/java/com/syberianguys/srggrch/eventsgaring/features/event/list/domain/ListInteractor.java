@@ -6,5 +6,7 @@ import com.syberianguys.srggrch.eventsgaring.network.Carry;
 import java.util.List;
 
 public interface ListInteractor {
-    void loadEvents (Carry<List<Event>> carry);
+    void loadSearchEvents (String searchString,Carry<List<Event>> carry);
+    void loadEvents(Carry<List<Event>>  carry);
+    boolean isAuth();
 }

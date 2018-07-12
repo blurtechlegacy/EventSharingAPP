@@ -15,7 +15,13 @@ public final class ListDataSourceImpl implements ListDataSource {
     }
 
     @Override
+    public void getSearchEvents(String searchString,Carry<List<Event>> carry) {
+        listApi.getSearchEventList(searchString).enqueue(new DefaultCallback(carry));
+    }
+
+    @Override
     public void getEvents(Carry<List<Event>> carry) {
         listApi.getEventList().enqueue(new DefaultCallback(carry));
     }
+
 }

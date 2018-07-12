@@ -24,7 +24,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onAddEventClicked() {
         //view.showProgress();
-        Event eventSketch = new Event(nameEvent,nameHost,1,description,tags,dateStart,dateEnd);
+        Event eventSketch = new Event(nameEvent,nameHost,"1",description,tags,dateStart,dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
             public void onSuccess(Event result) {
@@ -37,6 +37,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
                 view.showError(throwable.getMessage());
             }
         });
+
 
     }
 

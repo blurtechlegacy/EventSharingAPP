@@ -43,7 +43,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
 
     public void setEvents(List<Event> eventList){
         events.clear();
-        events.addAll(eventList);
+        if(eventList != null)        events.addAll(eventList);
         notifyDataSetChanged();
     }
 

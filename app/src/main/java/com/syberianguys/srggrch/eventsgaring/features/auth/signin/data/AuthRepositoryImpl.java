@@ -14,12 +14,7 @@ public class AuthRepositoryImpl implements AuthRepository {
     }
 
     @Override
-    public void loadUser(String id, Carry<User> carry) {
-        authDataSource.getUser(id, carry);
-    }
-
-    @Override
-    public void auth(UserAuth userAuth, Carry<UserAuth> carry) {
+    public void auth(UserAuth userAuth, Carry<User> carry) {
         authDataSource.checkAuth(userAuth, carry);
     }
 }

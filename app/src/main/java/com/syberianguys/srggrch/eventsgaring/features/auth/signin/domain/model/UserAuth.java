@@ -2,11 +2,11 @@ package com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.model;
 
 public class UserAuth {
     String login;
-    String pass;
+    String password;
 
-    public UserAuth(String login, String pass) {
+    public UserAuth(String login, String password) {
         this.login = login;
-        this.pass = pass;
+        this.password = password;
     }
 
     public String getLogin() {
@@ -14,6 +14,6 @@ public class UserAuth {
     }
 
     public String getPass() {
-        return pass;
+        return password;
     }
 }

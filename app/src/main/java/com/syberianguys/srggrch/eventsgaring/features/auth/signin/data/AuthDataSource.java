@@ -5,7 +5,5 @@ import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 public interface AuthDataSource {
-    void checkAuth (UserAuth userAuth, Carry<UserAuth> carry);
-
-    void getUser(String id, Carry<User> carry);
+    void checkAuth (UserAuth userAuth, Carry<User> carry);
 }
