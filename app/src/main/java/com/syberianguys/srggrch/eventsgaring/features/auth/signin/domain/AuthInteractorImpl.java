@@ -16,12 +16,7 @@ public class AuthInteractorImpl implements AuthInteractor {
     }
 
     @Override
-    public void loadUser(String id, Carry<User> carry) {
-        authRepository.loadUser(id, carry);
-    }
-
-    @Override
-    public void checkAuth(UserAuth userAuth, Carry<UserAuth> carry) {
+    public void checkAuth(UserAuth userAuth, Carry<User> carry) {
         authRepository.auth(userAuth, carry);
     }
 }

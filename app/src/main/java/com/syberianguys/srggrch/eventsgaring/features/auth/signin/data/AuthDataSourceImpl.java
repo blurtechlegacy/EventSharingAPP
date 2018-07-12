@@ -14,12 +14,7 @@ public class AuthDataSourceImpl implements AuthDataSource {
     }
 
     @Override
-    public void checkAuth(UserAuth userAuth, Carry<UserAuth> carry) {
+    public void checkAuth(UserAuth userAuth, Carry<User> carry) {
         authApi.CheckUser(userAuth).enqueue(new DefaultCallback(carry));
-    }
-
-    @Override
-    public void getUser(String id, Carry<User> carry) {
-        authApi.GetUser(id).enqueue(new DefaultCallback(carry));
     }
 }

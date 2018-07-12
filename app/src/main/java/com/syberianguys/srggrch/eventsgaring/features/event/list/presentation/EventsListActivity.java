@@ -99,12 +99,12 @@ public class EventsListActivity extends BaseActivity
         recyclerEvents.setAdapter(adapterEvent);
         recyclerEvents.setLayoutManager(layoutManager);
 
-
         f = getIntent().getBooleanExtra("isAuth", false);
         if (!f) {
             f = true;
             SignInActivity.start(EventsListActivity.this);
         }
+
     }
 
     @Override
@@ -113,7 +113,7 @@ public class EventsListActivity extends BaseActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            //super.onBackPressed();
         }
     }
 
@@ -178,7 +178,7 @@ public class EventsListActivity extends BaseActivity
 
     @Override
     public void showEventList(List<Event> list) {
-        adapterEvent.setEvents(list);
+        if (f) adapterEvent.setEvents(list);
     }
 
     @Override
