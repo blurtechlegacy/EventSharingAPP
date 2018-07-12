@@ -4,6 +4,7 @@ import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.AuthInteractor;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.model.UserAuth;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 public class SignInPresenter extends MvpPresenter<SignInView>{
@@ -21,10 +22,15 @@ public class SignInPresenter extends MvpPresenter<SignInView>{
 
     void onSignInClicked (){
         UserAuth userAuth =  new UserAuth(login, pass);
-        authInteractor.checkAuth(userAuth, new Carry<UserAuth>() {
+        if ((login != null)&&(pass!=null))
+        authInteractor.checkAuth(userAuth, new Carry<User>() {
             @Override
-            public void onSuccess(UserAuth result) {
-
+            public void onSuccess(User result) {
+                if (result != null) {
+                    view.authOk();
+                    authInteractor.putIsAuth(true);
+                }
+                else view.authFailed();
             }
 
             @Override

@@ -8,4 +8,5 @@ import java.util.List;
 public interface ListInteractor {
     void loadSearchEvents (String searchString,Carry<List<Event>> carry);
     void loadEvents(Carry<List<Event>>  carry);
+    boolean isAuth();
 }

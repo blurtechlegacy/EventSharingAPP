@@ -20,6 +20,12 @@ public class EventListPresenter extends MvpPresenter<EventListView>{
         loadEvents();
     }
 
+    //srggrch<3
+
+    public  boolean isAuth(){
+        return listInteractor.isAuth();
+    }
+
     private void loadEvents(){
         view.showProgress();
         listInteractor.loadEvents(new Carry<List<Event>>() {

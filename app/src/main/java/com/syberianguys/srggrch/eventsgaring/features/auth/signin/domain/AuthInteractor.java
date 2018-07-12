@@ -6,8 +6,10 @@ import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 public interface AuthInteractor {
 
-    void loadUser(String id, Carry<User> carry);
+    void checkAuth (UserAuth userAuth, Carry<User> carry);
 
-    void checkAuth (UserAuth userAuth, Carry<UserAuth> carry);
+    void putUser (User user);
+
+    void putIsAuth (boolean isAuth);
 
 }
