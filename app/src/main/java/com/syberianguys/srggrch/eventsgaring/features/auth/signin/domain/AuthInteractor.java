@@ -8,4 +8,8 @@ public interface AuthInteractor {
 
     void checkAuth (UserAuth userAuth, Carry<User> carry);
 
+    void putUser (User user);
+
+    void putIsAuth (boolean isAuth);
+
 }

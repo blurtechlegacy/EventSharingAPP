@@ -90,7 +90,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
     //@SuppressLint("ShowToast")
     @Override
     public void authFailed() {
-        Toast.makeText(this, "User not found", Toast.LENGTH_LONG);
+        Toast.makeText(this, "User not found", Toast.LENGTH_LONG).show();
     }
 
     @Override

@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ListInteractor {
     void loadEvents (Carry<List<Event>> carry);
+
+    boolean isAuth();
 }

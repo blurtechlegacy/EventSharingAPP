@@ -8,6 +8,10 @@ import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.AuthDataS
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.AuthDataSourceImpl;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.AuthRepository;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.AuthRepositoryImpl;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.localstorage.AuthLocalDataSource;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.localstorage.AuthLocalDataSourceImpl;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.localstorage.AuthLocalRepository;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signin.data.localstorage.AuthLocalRepositoryImpl;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.AuthInteractor;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.domain.AuthInteractorImpl;
 
@@ -19,7 +23,10 @@ public class SignInPresenterFactory {
                 .create(AuthApi.class);
         final AuthDataSource authDataSource = new AuthDataSourceImpl(api);
         final AuthRepository authRepository = new AuthRepositoryImpl(authDataSource);
-        final AuthInteractor authInteractor = new AuthInteractorImpl(authRepository);
+        final AuthLocalDataSource authSPDataSource = new AuthLocalDataSourceImpl(context);
+        final AuthLocalRepository authLocalRepository = new AuthLocalRepositoryImpl(authSPDataSource);
+        final AuthInteractor authInteractor = new AuthInteractorImpl(authRepository, authLocalRepository);
+
 
 
         return new SignInPresenter(authInteractor);
