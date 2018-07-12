@@ -14,7 +14,12 @@ public final class ListInteractorImpl implements ListInteractor {
     }
 
     @Override
+    public void loadSearchEvents(String searchString,Carry<List<Event>> carry) {
+            listRepository.loadSearchingEvents(searchString,carry);
+    }
+
+    @Override
     public void loadEvents(Carry<List<Event>> carry) {
-            listRepository.loadEvents(carry);
+        listRepository.loadEvents(carry);
     }
 }

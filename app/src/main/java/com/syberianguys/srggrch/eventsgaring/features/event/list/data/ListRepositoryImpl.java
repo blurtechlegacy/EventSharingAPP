@@ -13,6 +13,11 @@ public final class ListRepositoryImpl implements ListRepository {
     }
 
     @Override
+    public void loadSearchingEvents(String searchString,Carry<List<Event>> carry) {
+        listDataSource.getSearchEvents(searchString,carry);
+    }
+
+    @Override
     public void loadEvents(Carry<List<Event>> carry) {
         listDataSource.getEvents(carry);
     }

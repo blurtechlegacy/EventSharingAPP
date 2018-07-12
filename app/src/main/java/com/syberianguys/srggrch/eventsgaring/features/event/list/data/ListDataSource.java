@@ -6,6 +6,6 @@ import com.syberianguys.srggrch.eventsgaring.network.Carry;
 import java.util.List;
 
 public interface ListDataSource {
+    void getSearchEvents(String searchString, Carry<List<Event>> carry);
     void getEvents(Carry<List<Event>> carry);
-
 }

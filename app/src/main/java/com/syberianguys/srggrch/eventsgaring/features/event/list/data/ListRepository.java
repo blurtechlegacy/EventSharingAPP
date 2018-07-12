@@ -6,5 +6,7 @@ import com.syberianguys.srggrch.eventsgaring.network.Carry;
 import java.util.List;
 
 public interface ListRepository {
-    void loadEvents (Carry<List<Event>> carry);
+    void loadSearchingEvents (String searchString,Carry<List<Event>> carry);
+
+    void loadEvents(Carry<List<Event>> carry);
 }
