@@ -23,8 +23,10 @@ public class SignInPresenterFactory {
                 .create(AuthApi.class);
         final AuthDataSource authDataSource = new AuthDataSourceImpl(api);
         final AuthRepository authRepository = new AuthRepositoryImpl(authDataSource);
+
         final AuthLocalDataSource authSPDataSource = new AuthLocalDataSourceImpl(context);
         final AuthLocalRepository authLocalRepository = new AuthLocalRepositoryImpl(authSPDataSource);
+
         final AuthInteractor authInteractor = new AuthInteractorImpl(authRepository, authLocalRepository);
 
 

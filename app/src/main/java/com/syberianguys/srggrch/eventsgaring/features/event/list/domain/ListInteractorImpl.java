@@ -2,8 +2,7 @@ package com.syberianguys.srggrch.eventsgaring.features.event.list.domain;
 
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.data.ListRepository;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage.ListLocalDataSource;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage.ListLocalRepository;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage.ListLocalRepository;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 import java.util.List;

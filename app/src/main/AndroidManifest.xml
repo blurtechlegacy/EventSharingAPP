@@ -29,7 +29,7 @@
             />
         <activity android:name=".features.auth.signin.presentation.SignInActivity" />
         <activity android:name=".features.event.full.presentation.FullEventActivity" />
-        <activity android:name=".features.reg.presenter.RegActivity"></activity>
+        <activity android:name=".features.auth.signup.presenter.SignUpActivity"></activity>
     </application>
 
 </manifest>

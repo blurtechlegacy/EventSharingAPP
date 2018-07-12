@@ -1,11 +1,9 @@
-package com.syberianguys.srggrch.eventsgaring.features.reg.presenter;
+package com.syberianguys.srggrch.eventsgaring.features.auth.signup.presenter;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,12 +14,11 @@ import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
-import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.UserGender;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 
-public final class RegActivity extends BaseActivity implements RegView{
+public final class SignUpActivity extends BaseActivity implements SignUpView {
     private EditText editNameUser;
     private EditText editLogin;
     private EditText editPassword;
@@ -31,12 +28,12 @@ public final class RegActivity extends BaseActivity implements RegView{
     private Button   regButton;
 
 
-    private RegPresenter presenter;
+    private SignUpPresenter presenter;
     //public static boolean a=true; // чет как-то хз
 
 
     public static void start(Context context){
-        final Intent intent = new Intent(context, RegActivity.class);
+        final Intent intent = new Intent(context, SignUpActivity.class);
         //intent.putExtra("isAuth", isAuth);
        context.startActivity(intent);
     }
@@ -89,7 +86,7 @@ public final class RegActivity extends BaseActivity implements RegView{
             public void onClick(View v) {
                 presenter.onRegButClicked();
                 //if(a==true)
-                    EventsListActivity.start(RegActivity.this,true);
+                    EventsListActivity.start(SignUpActivity.this,true);
 
             }
         });
@@ -107,8 +104,8 @@ public final class RegActivity extends BaseActivity implements RegView{
      });
     }
     @Override
-    protected RegPresenter getPresenter() {
-       presenter =  RegPresenterFactory.createPresenter(this);
+    protected SignUpPresenter getPresenter() {
+       presenter =  SignUpPresenterFactory.createPresenter(this);
        return presenter;
     }
 

@@ -8,10 +8,10 @@ import com.syberianguys.srggrch.eventsgaring.features.event.list.data.ListDataSo
 import com.syberianguys.srggrch.eventsgaring.features.event.list.data.ListDataSourceImpl;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.data.ListRepository;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.data.ListRepositoryImpl;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage.ListLocalDataSource;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage.ListLocalDataSourceImpl;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage.ListLocalRepository;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage.ListLocalRepositoryImpl;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage.ListLocalDataSource;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage.ListLocalDataSourceImpl;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage.ListLocalRepository;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage.ListLocalRepositoryImpl;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.domain.ListInteractor;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.domain.ListInteractorImpl;
 
@@ -22,9 +22,11 @@ public class EventListPresenterFactory {
                 .create(ListApi.class);
         final ListDataSource listDataSource = new ListDataSourceImpl(listApi);
         final ListRepository listRepository = new ListRepositoryImpl(listDataSource);
+
         final ListLocalDataSource listLocalDataSource = new ListLocalDataSourceImpl(context);
-        final ListLocalRepository localDataSource = new ListLocalRepositoryImpl(listLocalDataSource);
-        final ListInteractor listInteractor = new ListInteractorImpl(listRepository, localDataSource);
+        final ListLocalRepository localRepository = new ListLocalRepositoryImpl(listLocalDataSource);
+
+        final ListInteractor listInteractor = new ListInteractorImpl(listRepository, localRepository);
 
         return new EventListPresenter(listInteractor);
     }
