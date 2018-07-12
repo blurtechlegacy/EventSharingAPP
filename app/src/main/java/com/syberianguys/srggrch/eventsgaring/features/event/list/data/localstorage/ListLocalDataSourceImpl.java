@@ -1,4 +1,4 @@
-package com.syberianguys.srggrch.eventsgaring.features.event.list.data.LocalStorage;
+package com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage;
 
 import android.content.Context;
 import android.content.SharedPreferences;

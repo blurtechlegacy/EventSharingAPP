@@ -1,9 +1,8 @@
-package com.syberianguys.srggrch.eventsgaring.features.reg.data;
+package com.syberianguys.srggrch.eventsgaring.features.auth.signup.data;
 
-import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
-public interface RegDataSource {
+public interface SignUpDataSource {
     void addUser(User user, Carry<User> carry);
 }

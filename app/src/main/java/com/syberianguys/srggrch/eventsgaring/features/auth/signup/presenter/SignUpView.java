@@ -1,8 +1,8 @@
-package com.syberianguys.srggrch.eventsgaring.features.reg.presenter;
+package com.syberianguys.srggrch.eventsgaring.features.auth.signup.presenter;
 
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 
-public interface RegView extends MvpView{
+public interface SignUpView extends MvpView{
     void showProgress();
 
     void hideProgress();

@@ -1,11 +1,9 @@
 package com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +12,8 @@ import android.widget.Toast;
 import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signup.presenter.SignUpActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.DefaultTextWatcher;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
-import com.syberianguys.srggrch.eventsgaring.features.reg.presenter.RegActivity;
 
 
 public class SignInActivity extends BaseActivity implements SignInView{
@@ -70,7 +67,7 @@ public class SignInActivity extends BaseActivity implements SignInView{
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RegActivity.start(SignInActivity.this);
+                SignUpActivity.start(SignInActivity.this);
             }
         });
 

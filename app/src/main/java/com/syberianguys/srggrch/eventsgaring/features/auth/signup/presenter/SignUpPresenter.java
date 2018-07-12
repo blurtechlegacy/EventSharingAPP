@@ -1,16 +1,13 @@
-package com.syberianguys.srggrch.eventsgaring.features.reg.presenter;
-
-import android.widget.Toast;
+package com.syberianguys.srggrch.eventsgaring.features.auth.signup.presenter;
 
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
-import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.UserGender;
-import com.syberianguys.srggrch.eventsgaring.features.reg.domain.RegInteractor;
+import com.syberianguys.srggrch.eventsgaring.features.auth.signup.domain.SignUpInteractor;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
-public class RegPresenter extends MvpPresenter<RegView>{
-    private RegInteractor interactor;
+public class SignUpPresenter extends MvpPresenter<SignUpView>{
+    private SignUpInteractor interactor;
     private String login;
     private String nameUser;
     private String birthday;
@@ -19,8 +16,8 @@ public class RegPresenter extends MvpPresenter<RegView>{
     private UserGender userGender;
 
 
-    public RegPresenter(RegInteractor regInteractor) {
-        this.interactor = regInteractor;
+    public SignUpPresenter(SignUpInteractor signUpInteractor) {
+        this.interactor = signUpInteractor;
     }
     public void onRegButClicked(){
         if(password.equals(repeatPassword)){
@@ -38,7 +35,7 @@ public class RegPresenter extends MvpPresenter<RegView>{
         });
         }
         else{
-         //  RegActivity.a = false;
+         //  SignUpActivity.a = false;
            view.showError("password and repeat password must be eqvivalent");
         }
     }
