@@ -90,9 +90,8 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
         startEvent.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                setTime(v);
-                setDate(v);
+            public void onClick(View v){
+                setDate();
                 setInitialDateTime(startEvent);
             }
         });
@@ -100,8 +99,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         endEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setTime(v);
-                setDate(v);
+                setDate();
                 setInitialDateTime(endEvent);
             }
         });
@@ -141,6 +139,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            setTime();
         }
     };
 
@@ -163,7 +162,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                         | DateUtils.FORMAT_SHOW_TIME));
     }
 
-    public void setTime(View v) {
+    public void setTime() {
         new TimePickerDialog(AddEventActivity.this, timeSetListener,
                 dateAndTime.get(Calendar.HOUR_OF_DAY),
                 dateAndTime.get(Calendar.MINUTE), true)
@@ -171,7 +170,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
     }
 
-    public void setDate(View v) {
+    public void setDate() {
         new DatePickerDialog(AddEventActivity.this, dateSetListener,
                 dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
