@@ -26,7 +26,10 @@ public class SignInPresenter extends MvpPresenter<SignInView>{
         authInteractor.checkAuth(userAuth, new Carry<User>() {
             @Override
             public void onSuccess(User result) {
-                if (result != null) view.authOk();
+                if (result != null) {
+                    view.authOk();
+                    authInteractor.putIsAuth(true);
+                }
                 else view.authFailed();
             }
 
