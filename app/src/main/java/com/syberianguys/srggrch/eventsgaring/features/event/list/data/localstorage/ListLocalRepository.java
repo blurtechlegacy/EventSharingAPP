@@ -6,4 +6,6 @@ public interface ListLocalRepository {
     boolean isAuth();
 
     User getUser();
+
+    void remove();
 }

@@ -77,6 +77,11 @@ public class EventListPresenter extends MvpPresenter<EventListView> {
         });
     }
 
+    public void onSettingsClicked(){
+        listInteractor.removePref();
+        view.signOutDone(listInteractor.isAuth());
+    }
+
     public void onSearchedTextChanged(String searchString) {
         this.searchString = searchString;
         if (this.searchString.equals("")) loadEvents();
