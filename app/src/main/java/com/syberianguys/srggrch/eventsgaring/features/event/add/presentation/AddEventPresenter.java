@@ -26,7 +26,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onAddEventClicked() {
         //view.showProgress();
-        Event eventSketch = new Event(nameHost,"1",nameEvent,description, eventPlace, tags, guests, dateStart,dateEnd);
+        Event eventSketch = new Event(nameHost,"1", nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
             public void onSuccess(Event result) {
@@ -55,6 +55,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
             tags.add(tag);
         }
     }
+
     public void onNameEventChanged(CharSequence nameEvent){
         this.nameEvent = nameEvent.toString();
     }
@@ -64,6 +65,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     public void onNameHostChanged(CharSequence nameHost){
         this.nameHost = nameHost.toString();
     }
+
     public void onDescriptionChanged(CharSequence description){
         this.description = description.toString();
     }

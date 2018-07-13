@@ -8,7 +8,7 @@ public class Event {
     private String host_name;
     private String name;
     private String description; //are we need additional var for short description
-    private String Place;
+    private String place;
     private ArrayList<String> tags;
     private ArrayList<String> guests;
     private String start;
@@ -21,7 +21,7 @@ public class Event {
         this.host_name = host_name;
         this.name = name;
         this.description = description;
-        Place = place;
+        this.place = place;
         this.tags = tags;
         this.guests = guests;
         this.start = start;
@@ -33,7 +33,7 @@ public class Event {
         this.host_name = host_name;
         this.name = name;
         this.description = description;
-        Place = place;
+        this.place = place;
         this.tags = tags;
         this.guests = guests;
         this.start = start;
@@ -50,6 +50,10 @@ public class Event {
     }
 
     public Event() {
+    }
+
+    public String getPlace() {
+        return place;
     }
 
     public String getHost_name() { return host_name; }

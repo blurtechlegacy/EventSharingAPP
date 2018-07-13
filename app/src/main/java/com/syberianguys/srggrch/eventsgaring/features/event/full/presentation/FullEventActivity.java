@@ -117,7 +117,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         nameEvent.setText(event.getName());
         nameHost.setText(event.getHost_name());
         fullDescription.setText(event.getDescription());
-        //place.setText();
+        place.setText(event.getPlace());
         date.setText(event.getStart());
         //eventImage
     }

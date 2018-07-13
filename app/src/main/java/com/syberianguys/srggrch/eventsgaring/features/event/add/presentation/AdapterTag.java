@@ -53,8 +53,8 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tagListerner.onTagSelected(tag.getTagText());
-                    if(tag.isTagSelected()==false) {
+                    tagListerner.onTagSelected(tag.getId());
+                    if(!tag.isTagSelected()) {
                         tagText.setBackgroundColor(Color.CYAN);
                         tag.setTagSelected(true);
                     }

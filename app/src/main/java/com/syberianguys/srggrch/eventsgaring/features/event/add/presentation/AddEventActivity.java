@@ -118,7 +118,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
         tags = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            tags.add(new Tag("#new_tag" + i, false));
+            tags.add(new Tag(Integer.toString(i),"#new_tag" + i, false));
         }
 
         recyclerTags = findViewById(R.id.recycler_view_tags);
