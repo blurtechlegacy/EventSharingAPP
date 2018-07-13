@@ -39,6 +39,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     private EditText editNameEvent;
     private EditText editHostName;
     private EditText editDescription;
+    private EditText editPlace;
     private TextView startEvent;
     private TextView endEvent;
     private Button addEventButton;
@@ -58,6 +59,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
+        editPlace = findViewById(R.id.adding_event_place);
         editNameEvent = findViewById(R.id.adding_event_name);
         editHostName = findViewById(R.id.adding_host_name);
         editDescription = findViewById(R.id.adding_event_discription);
@@ -82,6 +84,12 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 presenter.onDescriptionChanged(s);
+            }
+        });
+        editPlace.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.onPlaceChanged(s);
             }
         });
 

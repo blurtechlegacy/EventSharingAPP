@@ -23,6 +23,7 @@
     <string name="sign_up">sign up</string>
     <string name="auth_settings_key">user</string>
     <string name="assign_done">You assigned</string>
+    <string name="set_place">set place</string>
     <string-array name="sexlist">
         <item>male</item>
         <item>female</item>
