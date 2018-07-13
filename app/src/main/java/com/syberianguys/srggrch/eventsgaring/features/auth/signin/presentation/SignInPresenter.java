@@ -30,6 +30,7 @@ public class SignInPresenter extends MvpPresenter<SignInView>{
                     view.authOk();
                     authInteractor.putIsAuth(true);
                     authInteractor.putUser(result);
+
                 }
                 else view.authFailed();
             }
