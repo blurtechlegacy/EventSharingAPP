@@ -1,6 +1,7 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.list.domain;
 
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.data.ListRepository;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.data.localstorage.ListLocalRepository;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
@@ -29,5 +30,10 @@ public final class ListInteractorImpl implements ListInteractor {
     @Override
     public boolean isAuth() {
         return localRepository.isAuth();
+    }
+
+    @Override
+    public User getUser() {
+        return localRepository.getUser();
     }
 }

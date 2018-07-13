@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.syberianguys.srggrch.eventsgaring.R;
@@ -30,6 +31,7 @@ import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 
@@ -43,6 +45,8 @@ public class EventsListActivity extends BaseActivity
     private RecyclerView.LayoutManager layoutManager;
     private AdapterEvent adapterEvent;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView user_login;
+    private TextView user_name;
 
     private EventListPresenter presenter;
 
@@ -81,6 +85,11 @@ public class EventsListActivity extends BaseActivity
 
         //------------------------------------------------------------------------------------------
 
+
+        user_login = drawer.findViewById(R.id.userLogin);
+        user_name = drawer.findViewById(R.id.userName);
+
+
         swipeRefreshLayout = findViewById(R.id.event_list_swiperefresh);
         progressBar = findViewById(R.id.allEvent_progressBar);
         recyclerEvents = findViewById(R.id.allEvent_recycler_view);
@@ -93,6 +102,8 @@ public class EventsListActivity extends BaseActivity
                 Log.e("Event selected", event.getId());
             }
         });
+
+
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -202,6 +213,15 @@ public class EventsListActivity extends BaseActivity
     public void showEventList(List<Event> list) {
         if (presenter.isAuth()) adapterEvent.setEvents(list);
     }
+
+//    public void setUser (User user){
+//        user_login = findViewById(R.id.userLogin);
+//        user_name = findViewById(R.id.userName);
+//        if (user != null) {
+//            user_login.setText(user.getLogin());
+//            user_name.setText(user.getName());
+//        }
+//    }
 
     @Override
     public void showError(String message) {

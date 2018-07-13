@@ -2,4 +2,5 @@ package com.syberianguys.srggrch.eventsgaring.features.event.full.data.localstor
 
 public interface FullEventLocalRepository {
     String getUserId();
+
 }
