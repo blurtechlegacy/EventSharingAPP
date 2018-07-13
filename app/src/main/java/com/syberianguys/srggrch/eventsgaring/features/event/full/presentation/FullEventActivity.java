@@ -66,6 +66,13 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
 
         presenter.onEventSelected(id);
 
+        wantToGoBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onWantToGoClicked(id);
+            }
+        });
+
 
     }
 
@@ -118,5 +125,18 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void assignFailed() {
+        Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void assignDone() {
+        wantToGoBut.setText(R.string.assign_done);
+        wantToGoBut.setFocusable(false);
+        wantToGoBut.setClickable(false);
+
     }
 }

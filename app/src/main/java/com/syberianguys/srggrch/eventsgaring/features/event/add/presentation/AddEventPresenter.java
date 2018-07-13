@@ -13,7 +13,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     private String nameEvent;
     private String nameHost;
     private String description;
-    private ArrayList<Integer> tags = new ArrayList<>();
+    private ArrayList<String> tags = new ArrayList<>();
     private String dateStart;
     private String dateEnd;
 
@@ -43,11 +43,11 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
 
 
-    public void onTagSelected(int tag) {
+    public void onTagSelected(String tag) {
         if(tags.contains(tag)) {
            // tags.remove(tags.size()-1);
             for(int i=0;i<tags.size();i++){
-                if(tags.get(i)==tag) tags.remove(i);
+                if(tags.get(i).equals(tag)) tags.remove(i);
             }
         } else {
             tags.add(tag);

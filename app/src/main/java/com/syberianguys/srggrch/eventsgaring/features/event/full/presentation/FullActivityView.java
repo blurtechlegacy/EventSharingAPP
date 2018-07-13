@@ -15,4 +15,7 @@ public interface FullActivityView extends MvpView {
 
     void showError(String message);
 
+    void assignFailed();
+
+    void assignDone();
 }

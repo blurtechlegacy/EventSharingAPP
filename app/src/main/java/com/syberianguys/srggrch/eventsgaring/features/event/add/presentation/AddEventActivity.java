@@ -119,8 +119,8 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         recyclerTags.setLayoutManager(layoutManager);
         addNewEventAdapter = new AdapterTag(tags, new AdapterTag.TagListerner() {
             @Override
-            public void onTagSelected(int tagId) {
-                presenter.onTagSelected(tagId);
+            public void onTagSelected(String tagText) {
+                presenter.onTagSelected(tagText);
             }
         });
         recyclerTags.setAdapter(addNewEventAdapter);

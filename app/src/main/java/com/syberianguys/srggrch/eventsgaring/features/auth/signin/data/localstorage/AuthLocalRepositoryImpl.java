@@ -11,7 +11,7 @@ public class AuthLocalRepositoryImpl implements AuthLocalRepository {
 
     @Override
     public void putUserData(User user) {
-
+        dataSource.putUserData(user);
     }
 
     @Override

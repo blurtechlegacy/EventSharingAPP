@@ -32,7 +32,7 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(tags.get(position),position);
+        holder.bind(tags.get(position));
     }
 
     @Override
@@ -48,12 +48,12 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
             tagText = itemView.findViewById(R.id.item_text);
         }
 
-        void bind(final Tag tag, final int tagId) {
+        void bind(final Tag tag) {
             tagText.setText(tag.getTagText());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    tagListerner.onTagSelected(tagId);
+                    tagListerner.onTagSelected(tag.getTagText());
                     if(tag.isTagSelected()==false) {
                         tagText.setBackgroundColor(Color.CYAN);
                         tag.setTagSelected(true);
@@ -69,6 +69,6 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
     }
 
     public interface TagListerner {
-        void onTagSelected(int tagId);
+        void onTagSelected(String tagText);
     }
 }
