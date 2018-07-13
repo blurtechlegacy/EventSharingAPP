@@ -6,6 +6,7 @@ import com.syberianguys.srggrch.eventsgaring.features.event.add.domain.AddEventI
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddEventPresenter extends MvpPresenter<AddEventView> {
     private final AddEventInteractor addEventInteractor;
@@ -42,8 +43,29 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
 
     }
+    @Override
+    protected void onViewReady() {
+        loadTags();
+        // loadUser();
 
+    }
 
+    private void loadTags() {
+        view.showProgress();
+        addEventInteractor.addTag(new Carry<List<Tag>>() {
+            @Override
+            public void onSuccess(List<Tag> result) {
+                view.showTagList(result);
+              //  view.hideProgress();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+            //    view.hideProgress();
+                view.showError(throwable.toString());
+            }
+        });
+    }
 
     public void onTagSelected(String tag) {
         if(tags.contains(tag)) {

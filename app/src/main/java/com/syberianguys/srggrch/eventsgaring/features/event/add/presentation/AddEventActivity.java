@@ -22,10 +22,12 @@ import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public final class AddEventActivity extends BaseActivity implements AddEventView {
     private AddEventPresenter presenter;
@@ -47,9 +49,9 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
-    private AdapterTag addNewEventAdapter;
+    private AdapterTag adapterTag;
 
-    private ArrayList<Tag> tags;
+   // private ArrayList<Tag> tags;
 
     Calendar dateAndTime = Calendar.getInstance();
 
@@ -116,22 +118,19 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             }
         });
 
-        tags = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            tags.add(new Tag(Integer.toString(i),"#new_tag" + i, false));
-        }
+
 
         recyclerTags = findViewById(R.id.recycler_view_tags);
 
         layoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
         recyclerTags.setLayoutManager(layoutManager);
-        addNewEventAdapter = new AdapterTag(tags, new AdapterTag.TagListerner() {
+        adapterTag = new AdapterTag(new AdapterTag.TagListerner() {
             @Override
             public void onTagSelected(String tagText) {
                 presenter.onTagSelected(tagText);
             }
         });
-        recyclerTags.setAdapter(addNewEventAdapter);
+        recyclerTags.setAdapter(adapterTag);
     }
 
 
@@ -164,6 +163,11 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
     }
 
+    @Override
+    public void showTagList(List<Tag> list) {
+        adapterTag.setEvents(list);
+    }
+
     DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -172,6 +176,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             setTimeEnd();
+
         }
     };
 
