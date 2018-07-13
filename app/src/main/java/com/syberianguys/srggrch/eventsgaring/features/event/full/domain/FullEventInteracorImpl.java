@@ -2,10 +2,13 @@ package com.syberianguys.srggrch.eventsgaring.features.event.full.domain;
 
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.Tag;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.data.FullEventRepository;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.data.localstorage.FullEventLocalRepository;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.domain.model.AssignEvent;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
+
+import java.util.List;
 
 public class FullEventInteracorImpl implements FullEventInteracor {
 
@@ -20,6 +23,11 @@ public class FullEventInteracorImpl implements FullEventInteracor {
     @Override
     public void loadEvent(Carry<Event> carry, String id) {
         fullEventRepository.loadEvent(carry, id);
+    }
+
+    @Override
+    public void getTags(Carry<List<Tag>> carry) {
+        fullEventRepository.getTags(carry);
     }
 
     @Override

@@ -1,6 +1,5 @@
-package com.syberianguys.srggrch.eventsgaring.features.event.add.presentation;
+package com.syberianguys.srggrch.eventsgaring.features.event.full.presentation;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,31 +8,31 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.syberianguys.srggrch.eventsgaring.R;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.Tag;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder> {
+public final class AdapterTagFullEvent extends RecyclerView.Adapter<AdapterTagFullEvent.ViewHolder> {
     private final ArrayList<Tag> tags;
-    private final TagListerner tagListerner;
 
-    public AdapterTag(ArrayList<Tag> tags, TagListerner tagListerner) {
+    public AdapterTagFullEvent(ArrayList<Tag> tags) {
         this.tags = tags;
-        this.tagListerner = tagListerner;
     }
 
 
-
-
-
-
+    public void setTags(List<Tag> tagsList){
+        //tags.clear();
+        if(tagsList != null) tags.addAll(tagsList);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View tagView = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.item_tag, parent, false);
-        ViewHolder tagViewHolder = new ViewHolder(tagView);
-        return tagViewHolder;
+        return new ViewHolder(tagView);
     }
 
     @Override
@@ -56,25 +55,6 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
 
         void bind(final Tag tag) {
             tagText.setText(tag.getName());
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    tagListerner.onTagSelected(tag.getId());
-                    if(!tag.isTagSelected()) {
-                        tagText.setBackgroundColor(Color.CYAN);
-                        tag.setTagSelected(true);
-                    }
-                    else{
-                        tagText.setBackgroundColor(Color.TRANSPARENT);
-                        tag.setTagSelected(false);
-                    }
-                }
-            });
-
         }
-    }
-
-    public interface TagListerner {
-        void onTagSelected(String tagText);
     }
 }
