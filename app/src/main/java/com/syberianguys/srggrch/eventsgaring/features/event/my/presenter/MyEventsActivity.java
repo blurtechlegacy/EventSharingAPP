@@ -175,7 +175,6 @@ public class MyEventsActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_allEvents) {
-            // Handle the camera action
             EventsListActivity.start(this,true);
         } else if (id == R.id.nav_myEvents) {
 

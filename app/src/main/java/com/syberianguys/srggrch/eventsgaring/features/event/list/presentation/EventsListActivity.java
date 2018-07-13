@@ -37,6 +37,9 @@ import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.A
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsActivity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class EventsListActivity extends BaseActivity
@@ -214,6 +217,7 @@ public class EventsListActivity extends BaseActivity
 
     @Override
     public void showEventList(List<Event> list) {
+        Collections.reverse(list);
         if (presenter.isAuth()) adapterEvent.setEvents(list);
     }
 

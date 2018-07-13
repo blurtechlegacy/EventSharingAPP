@@ -10,6 +10,8 @@ public interface AddEventView extends MvpView {
 
     void hideProgress();
 
+    void dateEmptyError();
+
     void showError(String message);
 
     void showTagList(List<Tag> list);

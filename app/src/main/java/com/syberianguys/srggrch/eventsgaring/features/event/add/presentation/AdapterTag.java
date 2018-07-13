@@ -26,6 +26,12 @@ public final class AdapterTag extends RecyclerView.Adapter<AdapterTag.ViewHolder
         this.tagListerner = tagListerner;
     }
 
+
+
+
+
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

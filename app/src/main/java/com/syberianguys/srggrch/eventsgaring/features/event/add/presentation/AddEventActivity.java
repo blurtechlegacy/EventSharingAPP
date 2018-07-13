@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
@@ -58,7 +59,13 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_event);
+        setContentView(R.layout.app_bar_new_event);
+
+        Toolbar toolbar = findViewById(R.id.new_event_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.title_new_event);
+
+
 
         editPlace = findViewById(R.id.adding_event_place);
         editNameEvent = findViewById(R.id.adding_event_name);
@@ -106,7 +113,6 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             @Override
             public void onClick(View v) {
                 presenter.onAddEventClicked();
-                EventsListActivity.start(AddEventActivity.this, true);
             }
         });
 
@@ -147,6 +153,13 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     @Override
     public void hideProgress() {
         //  progressBar.setVisibility(View.GONE);
+
+        EventsListActivity.start(AddEventActivity.this, true);
+    }
+
+    @Override
+    public void dateEmptyError() {
+        Toast.makeText(this, "date is empty", Toast.LENGTH_SHORT).show();
     }
 
     @Override

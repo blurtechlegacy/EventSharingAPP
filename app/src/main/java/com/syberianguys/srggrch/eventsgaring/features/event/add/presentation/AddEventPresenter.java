@@ -28,27 +28,31 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onAddEventClicked() {
         //view.showProgress();
-        user = addEventInteractor.getUser();
-        Event eventSketch = new Event(user.getId(), user.getLogin(), nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
-        addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
-            @Override
-            public void onSuccess(Event result) {
-                view.hideProgress();
-                view.showProgress();
-            }
+        if ((dateEnd == null)||(dateStart == null)) view.dateEmptyError();
+        else {
+            view.showProgress();
+            user = addEventInteractor.getUser();
+            Event eventSketch = new Event(user.getId(), user.getLogin(), nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
+            addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
+                @Override
+                public void onSuccess(Event result) {
+                    view.hideProgress();
+                }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                view.showError(throwable.getMessage());
-            }
-        });
-
+                @Override
+                public void onFailure(Throwable throwable) {
+                    view.showError(throwable.getMessage());
+                }
+            });
+        }
 
     }
     @Override
     protected void onViewReady() {
         loadTags();
         // loadUser();
+
+
 
     }
 
