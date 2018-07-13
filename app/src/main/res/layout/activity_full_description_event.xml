@@ -103,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="56dp"
                 android:background="@color/colorAccent"
                 android:text="@string/want_to_go"
                 app:layout_constraintEnd_toEndOf="parent"

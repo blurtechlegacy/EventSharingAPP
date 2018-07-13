@@ -14,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class AdapterTagFullEvent extends RecyclerView.Adapter<AdapterTagFullEvent.ViewHolder> {
-    private final ArrayList<Tag> tags;
+    private final ArrayList<Tag> tags = new ArrayList<>();
 
-    public AdapterTagFullEvent(ArrayList<Tag> tags) {
-        this.tags = tags;
+    public AdapterTagFullEvent(List<Tag> tags) {
+        this.tags.addAll(tags);
     }
 
 
     public void setTags(List<Tag> tagsList){
-        //tags.clear();
+        tags.clear();
         if(tagsList != null) tags.addAll(tagsList);
         notifyDataSetChanged();
     }

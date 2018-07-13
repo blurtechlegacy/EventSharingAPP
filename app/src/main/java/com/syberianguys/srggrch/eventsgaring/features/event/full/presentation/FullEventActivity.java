@@ -91,7 +91,6 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
 
         layoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
         recyclerTags.setLayoutManager(layoutManager);
-        fullEventTagsAdapter = new AdapterTagFullEvent(tags);
 
 
 
@@ -116,6 +115,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         place.setVisibility(View.GONE);
         fullDescription.setVisibility(View.GONE);
         date.setVisibility(View.GONE);
+        recyclerTags.setVisibility(View.GONE);
         wantToGoBut.setVisibility(View.GONE);
     }
 
@@ -127,6 +127,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         nameEvent.setVisibility(View.VISIBLE);
         fullDescription.setVisibility(View.VISIBLE);
         date.setVisibility(View.VISIBLE);
+        recyclerTags.setVisibility(View.VISIBLE);
         wantToGoBut.setVisibility(View.VISIBLE);
     }
 
@@ -140,7 +141,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
                 Long.parseLong(event.getStart()),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
-
+        fullEventTagsAdapter = new AdapterTagFullEvent(tags);
         fullEventTagsAdapter.setTags(tags);
         recyclerTags.setAdapter(fullEventTagsAdapter);
     }
