@@ -25,23 +25,7 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
     protected void onViewReady() {
         view.showProgress();
         getTags();
-        fullEventInteracor.loadEvent(new Carry<Event>() {
-            @Override
-            public void onSuccess(Event result) {
-                tags.clear();
-                for(int i = 0; i< allTags.size(); i++){
-                    if (result.getTags().contains(allTags.get(i).getId())) tags.add(allTags.get(i));
-                }
-                view.hideProgress();
-                view.showEvent(result, tags);
-                if ((result.getGuests() != null)&&(result.getGuests().contains(fullEventInteracor.getUserId()))) view.assignDone();
-            }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                view.showError(throwable.getMessage());
-            }
-        }, id);
     }
 
 
@@ -50,6 +34,24 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
             @Override
             public void onSuccess(List<Tag> result) {
                 allTags = result;
+                fullEventInteracor.loadEvent(new Carry<Event>() {
+                    @Override
+                    public void onSuccess(Event result) {
+
+                        tags.clear();
+                        for(int i = 0; i< allTags.size(); i++){
+                            if (result.getTags().contains(allTags.get(i).getId())) tags.add(allTags.get(i));
+                        }
+                        view.hideProgress();
+                        view.showEvent(result, tags);
+                        if ((result.getGuests() != null)&&(result.getGuests().contains(fullEventInteracor.getUserId()))) view.assignDone();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        view.showError(throwable.getMessage());
+                    }
+                }, id);
             }
 
             @Override

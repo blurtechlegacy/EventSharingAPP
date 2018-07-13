@@ -38,14 +38,13 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     private FullEventPresenter presenter;
     private ProgressBar progressBar;
 
-    TextView nameEvent ;
     TextView nameHost;
     TextView fullDescription;
     TextView place;
     TextView date;
     Button wantToGoBut;
 
-    Toolbar toolbar = findViewById(R.id.full_event_toolbar);
+    Toolbar toolbar;
 
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
@@ -68,7 +67,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         setContentView(R.layout.app_bar_full_event);
 
 
-
+        toolbar = findViewById(R.id.full_event_toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -76,7 +75,6 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         progressBar = findViewById(R.id.full_event_progressBar);
         Log.e("FullEventActivity", "Started");
 
-        nameEvent = findViewById(R.id.name_event);
         nameHost = findViewById(R.id.name_host);
         fullDescription = findViewById(R.id.event_description);
         place = findViewById(R.id.event_place);
@@ -121,7 +119,6 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
         nameHost.setVisibility(View.GONE);
-        nameEvent.setVisibility(View.GONE);
         place.setVisibility(View.GONE);
         fullDescription.setVisibility(View.GONE);
         date.setVisibility(View.GONE);
@@ -134,7 +131,6 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         place.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
         nameHost.setVisibility(View.VISIBLE);
-        nameEvent.setVisibility(View.VISIBLE);
         fullDescription.setVisibility(View.VISIBLE);
         date.setVisibility(View.VISIBLE);
         recyclerTags.setVisibility(View.VISIBLE);
@@ -144,7 +140,6 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     @Override
     public void showEvent(Event event, List<Tag> tags) {
         getSupportActionBar().setTitle(event.getName());
-        nameEvent.setText(event.getName());
         nameHost.setText(event.getHost_name());
         fullDescription.setText(event.getDescription());
         place.setText(event.getPlace());
