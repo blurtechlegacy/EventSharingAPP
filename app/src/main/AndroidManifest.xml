@@ -33,6 +33,9 @@
         <activity
             android:name=".features.event.my.presenter.MyEventsActivity"
             android:label="@string/title_activity_my_events"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".features.event.assigned.presenter.AssignedActivity"/>
+
             android:theme="@style/AppTheme" />
     </application>
 

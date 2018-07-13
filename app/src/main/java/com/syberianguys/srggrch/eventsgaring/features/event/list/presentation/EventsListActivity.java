@@ -33,6 +33,7 @@ import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsActivity;
 
@@ -191,7 +192,7 @@ public class EventsListActivity extends BaseActivity
         } else if (id == R.id.nav_myEvents) {
             MyEventsActivity.start(this);
         } else if (id == R.id.nav_assignedEvents) {
-
+            AssignedActivity.start(this);
         } else if (id == R.id.nav_settings) {
 
         }

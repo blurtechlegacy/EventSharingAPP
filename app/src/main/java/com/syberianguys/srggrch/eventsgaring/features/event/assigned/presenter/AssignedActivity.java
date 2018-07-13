@@ -1,25 +1,23 @@
-package com.syberianguys.srggrch.eventsgaring.features.event.my.presenter;
+package com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.MenuInflater;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
@@ -29,22 +27,21 @@ import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
-import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.SignInActivity;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
-import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedActivity;
-import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedView;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenter;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenterFactory;
-import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListView;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsPresenter;
+import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsPresenterFactory;
+import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsView;
 
 import java.util.List;
 
-public class MyEventsActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MyEventsView {
+public class AssignedActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, AssignedView
+{
 
     private RecyclerView recyclerEvents;
     private ProgressBar progressBar;
@@ -52,10 +49,10 @@ public class MyEventsActivity extends BaseActivity
     private AdapterEvent adapterEvent;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private MyEventsPresenter presenter;
+    private AssignedPresenter presenter;
 
     public static void start(Context context){
-        final Intent intent = new Intent(context, MyEventsActivity.class);
+        final Intent intent = new Intent(context, AssignedActivity.class);
         context.startActivity(intent);
     }
 
@@ -73,7 +70,7 @@ public class MyEventsActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddEventActivity.start(MyEventsActivity.this);
+                AddEventActivity.start(AssignedActivity.this);
             }
         });
 
@@ -96,7 +93,7 @@ public class MyEventsActivity extends BaseActivity
             @Override
             public void onEventSelected(Event event) {
                 //presenter.onEventSelected(event);
-                FullEventActivity.start(MyEventsActivity.this, event.getId());
+                FullEventActivity.start(AssignedActivity.this, event.getId());
                 Log.e("Event selected", event.getId());
             }
         });
@@ -142,7 +139,7 @@ public class MyEventsActivity extends BaseActivity
 
             @Override
             public boolean onQueryTextChange(String newText) {
-               // presenter.onSearchedTextChanged(newText);
+                // presenter.onSearchedTextChanged(newText);
                 return false;
             }
         });
@@ -175,9 +172,10 @@ public class MyEventsActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_allEvents) {
+            // Handle the camera action
             EventsListActivity.start(this,true);
         } else if (id == R.id.nav_myEvents) {
-
+            MyEventsActivity.start(this);
         } else if (id == R.id.nav_assignedEvents) {
 
         } else if (id == R.id.nav_settings) {
@@ -213,8 +211,8 @@ public class MyEventsActivity extends BaseActivity
     }
 
     @Override
-    protected MvpPresenter<MyEventsView> getPresenter() {
-        presenter = MyEventsPresenterFactory.createPresenter(this);
+    protected MvpPresenter<AssignedView> getPresenter() {
+        presenter = AssignedPresenterFactory.createPresenter(this);
         return presenter;
     }
 
@@ -223,4 +221,3 @@ public class MyEventsActivity extends BaseActivity
         return this;
     }
 }
-
