@@ -1,6 +1,7 @@
 package com.syberianguys.srggrch.eventsgaring.features.event.list.data;
 
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.Tag;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 import com.syberianguys.srggrch.eventsgaring.network.DefaultCallback;
 
