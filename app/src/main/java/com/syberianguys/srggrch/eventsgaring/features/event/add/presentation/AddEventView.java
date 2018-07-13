@@ -7,5 +7,7 @@ public interface AddEventView extends MvpView {
 
     void hideProgress();
 
+    void dateEmptyError();
+
     void showError(String message);
 }

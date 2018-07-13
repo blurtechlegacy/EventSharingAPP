@@ -28,5 +28,6 @@
         <item>male</item>
         <item>female</item>
     </string-array>
-    <string name="title_activity_my_events">MyEventsActivity</string>
+    <string name="title_activity_my_events">My Events</string>
+    <string name="title_new_event">New Event</string>
 </resources>
