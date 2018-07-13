@@ -78,7 +78,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
         void bind(final Event event){
             eventName.setText(event.getName());
             shortDesription.setText(event.getDescription());
-            eventHost.setText(event.getHost());
+            eventHost.setText(event.getHost_name());
             if (event.getStart() != null)
             eventDate.setText(DateUtils.formatDateTime(context,
                     Long.parseLong(event.getStart()),

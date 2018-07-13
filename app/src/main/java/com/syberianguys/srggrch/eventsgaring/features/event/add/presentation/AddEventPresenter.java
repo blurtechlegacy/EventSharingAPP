@@ -2,6 +2,7 @@ package com.syberianguys.srggrch.eventsgaring.features.event.add.presentation;
 
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.domain.AddEventInteractor;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
@@ -11,13 +12,13 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     private final AddEventInteractor addEventInteractor;
 
     private String nameEvent;
-    private String nameHost;
     private String description;
     private ArrayList<String> tags = new ArrayList<>();
     private ArrayList<String> guests = new ArrayList<>();
     private String dateStart;
     private String dateEnd;
     private String eventPlace;
+    private User user;
 
     public AddEventPresenter(AddEventInteractor addEventInteractor) {
         this.addEventInteractor = addEventInteractor;
@@ -26,7 +27,8 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onAddEventClicked() {
         //view.showProgress();
-        Event eventSketch = new Event("2", nameHost, nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
+        user = addEventInteractor.getUser();
+        Event eventSketch = new Event(user.getId(), user.getLogin(), nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
             public void onSuccess(Event result) {
@@ -61,9 +63,6 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     }
     public void onPlaceChanged(CharSequence eventPlace){
         this.eventPlace = eventPlace.toString();
-    }
-    public void onNameHostChanged(CharSequence nameHost){
-        this.nameHost = nameHost.toString();
     }
 
     public void onDescriptionChanged(CharSequence description){
