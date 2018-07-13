@@ -1,6 +1,6 @@
 # Eventhub 
 
-[![HitCount](http://hits.dwyl.io/blurtech/EventSharingAPP.svg)](http://hits.dwyl.io/blurtech/EventSharingAPP)
+[![HitCount](http://hits.dwyl.io/blurtech/EventSharingAPP.svg)](http://hits.dwyl.io/blurtech/EventSharingAPP) [![Maintainability](https://api.codeclimate.com/v1/badges/3b8e2f0b4b092b3bf461/maintainability)](https://codeclimate.com/github/blurtech/EventSharingAPP/maintainability)
 
 ![Eventhub](https://pp.userapi.com/c847020/v847020208/9800e/BJ8SGn4Zx7s.jpg)  
 
