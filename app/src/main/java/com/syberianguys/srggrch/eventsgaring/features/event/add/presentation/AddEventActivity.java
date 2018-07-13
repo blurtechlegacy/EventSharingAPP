@@ -62,7 +62,6 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         Toolbar toolbar = findViewById(R.id.new_event_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.title_new_event);
-        //toolbar.setTitle(R.string.title_new_event);
 
 
 
