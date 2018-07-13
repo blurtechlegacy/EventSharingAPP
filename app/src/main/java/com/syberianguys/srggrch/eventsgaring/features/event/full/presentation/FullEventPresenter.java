@@ -28,7 +28,7 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
         fullEventInteracor.loadEvent(new Carry<Event>() {
             @Override
             public void onSuccess(Event result) {
-
+                tags.clear();
                 for(int i = 0; i< allTags.size(); i++){
                     if (result.getTags().contains(allTags.get(i).getId())) tags.add(allTags.get(i));
                 }

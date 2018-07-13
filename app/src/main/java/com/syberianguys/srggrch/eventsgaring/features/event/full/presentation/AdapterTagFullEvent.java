@@ -17,7 +17,8 @@ public final class AdapterTagFullEvent extends RecyclerView.Adapter<AdapterTagFu
     private final ArrayList<Tag> tags = new ArrayList<>();
 
     public AdapterTagFullEvent(List<Tag> tags) {
-        this.tags.addAll(tags);
+//        this.tags.clear();
+//        this.tags.addAll(tags);
     }
 
 

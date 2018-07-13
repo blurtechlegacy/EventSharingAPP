@@ -7,6 +7,7 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
@@ -44,6 +45,8 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     TextView date;
     Button wantToGoBut;
 
+    Toolbar toolbar = findViewById(R.id.full_event_toolbar);
+
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
     private AdapterTagFullEvent fullEventTagsAdapter;
@@ -62,7 +65,12 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_description_event);
+        setContentView(R.layout.app_bar_full_event);
+
+
+
+        setSupportActionBar(toolbar);
+
 
 
         progressBar = findViewById(R.id.full_event_progressBar);
@@ -91,6 +99,8 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
 
         layoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
         recyclerTags.setLayoutManager(layoutManager);
+        fullEventTagsAdapter = new AdapterTagFullEvent(tags);
+        recyclerTags.setAdapter(fullEventTagsAdapter);
 
 
 
@@ -133,6 +143,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
 
     @Override
     public void showEvent(Event event, List<Tag> tags) {
+        getSupportActionBar().setTitle(event.getName());
         nameEvent.setText(event.getName());
         nameHost.setText(event.getHost_name());
         fullDescription.setText(event.getDescription());
@@ -141,9 +152,8 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
                 Long.parseLong(event.getStart()),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
-        fullEventTagsAdapter = new AdapterTagFullEvent(tags);
+
         fullEventTagsAdapter.setTags(tags);
-        recyclerTags.setAdapter(fullEventTagsAdapter);
     }
 
     @Override
