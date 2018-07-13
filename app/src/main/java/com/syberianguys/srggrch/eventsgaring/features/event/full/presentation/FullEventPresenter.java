@@ -3,6 +3,7 @@ package com.syberianguys.srggrch.eventsgaring.features.event.full.presentation;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.domain.FullEventInteracor;
+import com.syberianguys.srggrch.eventsgaring.features.event.full.domain.model.AssignEvent;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
 public class FullEventPresenter extends MvpPresenter<FullActivityView> {
@@ -22,6 +23,7 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
             public void onSuccess(Event result) {
                 view.hideProgress();
                 view.showEvent(result);
+                if ((result.getGuests() != null)&&(result.getGuests().contains(fullEventInteracor.getUserId()))) view.assignDone();
             }
 
             @Override
@@ -30,7 +32,9 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
             }
         }, id);
     }
-    private void loadEvent(String id){
+
+
+    private void loadEvent(String id) {
         view.showProgress();
         fullEventInteracor.loadEvent(new Carry<Event>() {
 
@@ -48,7 +52,24 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
         }, id);
     }
 
-    void onEventSelected(String id){
+    public void onWantToGoClicked(String id) {
+        view.showProgress();
+        fullEventInteracor.assignEvent(new AssignEvent(fullEventInteracor.getUserId(), id), new Carry<Event>() {
+            @Override
+            public void onSuccess(Event result) {
+                view.hideProgress();
+                view.assignDone();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.hideProgress();
+                view.assignFailed();
+            }
+        });
+    }
+
+    void onEventSelected(String id) {
         this.id = id;
 
     }

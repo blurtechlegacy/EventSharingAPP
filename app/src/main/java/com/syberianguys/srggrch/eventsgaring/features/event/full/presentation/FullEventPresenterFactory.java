@@ -8,6 +8,10 @@ import com.syberianguys.srggrch.eventsgaring.features.event.full.data.FullEventD
 import com.syberianguys.srggrch.eventsgaring.features.event.full.data.FullEventDataSourceImpl;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.data.FullEventRepository;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.data.FullEventRepositoryImpl;
+import com.syberianguys.srggrch.eventsgaring.features.event.full.data.localstorage.FullEventLocalDataSource;
+import com.syberianguys.srggrch.eventsgaring.features.event.full.data.localstorage.FullEventLocalDataSourceImpl;
+import com.syberianguys.srggrch.eventsgaring.features.event.full.data.localstorage.FullEventLocalRepository;
+import com.syberianguys.srggrch.eventsgaring.features.event.full.data.localstorage.FullEventLocalRepositoryImpl;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.domain.FullEventInteracor;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.domain.FullEventInteracorImpl;
 
@@ -18,7 +22,11 @@ public class FullEventPresenterFactory {
                 .create(FullEventApi.class);
         final FullEventDataSource eventDataSource = new FullEventDataSourceImpl(eventApi);
         final FullEventRepository eventRepository = new FullEventRepositoryImpl(eventDataSource);
-        final FullEventInteracor eventInteracor = new FullEventInteracorImpl(eventRepository);
+
+        final FullEventLocalDataSource localDataSource = new FullEventLocalDataSourceImpl(context);
+        final FullEventLocalRepository localRepository = new FullEventLocalRepositoryImpl(localDataSource);
+
+        final FullEventInteracor eventInteracor = new FullEventInteracorImpl(eventRepository, localRepository);
 
         return new FullEventPresenter(eventInteracor);
     }

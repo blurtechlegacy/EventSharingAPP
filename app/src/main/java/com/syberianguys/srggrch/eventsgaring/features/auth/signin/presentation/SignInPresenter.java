@@ -29,6 +29,8 @@ public class SignInPresenter extends MvpPresenter<SignInView>{
                 if (result != null) {
                     view.authOk();
                     authInteractor.putIsAuth(true);
+                    authInteractor.putUser(result);
+
                 }
                 else view.authFailed();
             }

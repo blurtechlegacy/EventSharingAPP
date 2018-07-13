@@ -39,6 +39,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     private EditText editNameEvent;
     private EditText editHostName;
     private EditText editDescription;
+    private EditText editPlace;
     private TextView startEvent;
     private TextView endEvent;
     private Button addEventButton;
@@ -58,6 +59,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_event);
 
+        editPlace = findViewById(R.id.adding_event_place);
         editNameEvent = findViewById(R.id.adding_event_name);
         editHostName = findViewById(R.id.adding_host_name);
         editDescription = findViewById(R.id.adding_event_discription);
@@ -82,6 +84,12 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 presenter.onDescriptionChanged(s);
+            }
+        });
+        editPlace.addTextChangedListener(new DefaultTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.onPlaceChanged(s);
             }
         });
 
@@ -110,7 +118,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
         tags = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            tags.add(new Tag("#new_tag" + i, false));
+            tags.add(new Tag(Integer.toString(i),"#new_tag" + i, false));
         }
 
         recyclerTags = findViewById(R.id.recycler_view_tags);
@@ -119,8 +127,8 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         recyclerTags.setLayoutManager(layoutManager);
         addNewEventAdapter = new AdapterTag(tags, new AdapterTag.TagListerner() {
             @Override
-            public void onTagSelected(int tagId) {
-                presenter.onTagSelected(tagId);
+            public void onTagSelected(String tagText) {
+                presenter.onTagSelected(tagText);
             }
         });
         recyclerTags.setAdapter(addNewEventAdapter);
@@ -159,6 +167,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateAndTime.clear();
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -184,7 +193,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
-
+        presenter.onDataEndChanged(String.valueOf(dateAndTime.getTimeInMillis()));
 
     }
 
@@ -208,6 +217,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateAndTime.clear();
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -232,6 +242,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
+        presenter.onDataStartChanged(String.valueOf(dateAndTime.getTimeInMillis()));
     }
 
     public void setTimeStart() {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.syberianguys.srggrch.eventsgaring.R;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +23,11 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
     private final List<Event> events = new ArrayList<>();
     private final LayoutInflater inflater;
     SelectEventListener selectEventListener;
+    private final Context context;
 
 
     public AdapterEvent (Context context, SelectEventListener selectEventListener){
+        this.context = context;
         inflater = LayoutInflater.from(context);
         this.selectEventListener = selectEventListener;
     }
@@ -74,8 +78,12 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
         void bind(final Event event){
             eventName.setText(event.getName());
             shortDesription.setText(event.getDescription());
-            eventHost.setText(event.getHost_name());
-            eventDate.setText(event.getStart());
+            eventHost.setText(event.getHost());
+            if (event.getStart() != null)
+            eventDate.setText(DateUtils.formatDateTime(context,
+                    Long.parseLong(event.getStart()),
+                    DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+                            | DateUtils.FORMAT_SHOW_TIME));
 
             eventMore.setOnClickListener(new View.OnClickListener() {
                 @Override

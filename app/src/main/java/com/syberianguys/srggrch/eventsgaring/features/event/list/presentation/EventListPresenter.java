@@ -2,6 +2,7 @@ package com.syberianguys.srggrch.eventsgaring.features.event.list.presentation;
 
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.domain.ListInteractor;
 import com.syberianguys.srggrch.eventsgaring.network.Carry;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class EventListPresenter extends MvpPresenter<EventListView> {
     private ListInteractor listInteractor;
     private String searchString;
+    User user;
 
     public EventListPresenter(ListInteractor listInteractor) {
         this.listInteractor = listInteractor;
@@ -18,6 +20,8 @@ public class EventListPresenter extends MvpPresenter<EventListView> {
     @Override
     protected void onViewReady() {
         loadEvents();
+       // loadUser();
+
     }
 
     //srggrch<3
@@ -25,6 +29,11 @@ public class EventListPresenter extends MvpPresenter<EventListView> {
     public boolean isAuth() {
         return listInteractor.isAuth();
     }
+
+//    private void loadUser(){
+//        user = listInteractor.getUser();
+//        //if (user != null) view.setUser(user);
+//    }
 
     private void loadEvents() {
         view.showProgress();

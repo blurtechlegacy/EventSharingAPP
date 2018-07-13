@@ -28,16 +28,21 @@ public class AuthLocalDataSourceImpl implements AuthLocalDataSource {
         Gson gson = new Gson();
         String json = gson.toJson(user);
         putString("userData", json);
+        User users = getUserData();
+
+    }
+    public String getString(String key) {
+        return sharedPreferences.getString("userData", null);
     }
 
 
     @Override
     public User getUserData() {
         Gson gson = new Gson();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String json = "";
-        sharedPreferences.getString("userData", json);
-        return null;
+        String json = getString("userData");
+        User user = gson.fromJson(json, User.class);
+
+        return user;
     }
 
     @Override

@@ -13,9 +13,11 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     private String nameEvent;
     private String nameHost;
     private String description;
-    private ArrayList<Integer> tags = new ArrayList<>();
+    private ArrayList<String> tags = new ArrayList<>();
+    private ArrayList<String> guests = new ArrayList<>();
     private String dateStart;
     private String dateEnd;
+    private String eventPlace;
 
     public AddEventPresenter(AddEventInteractor addEventInteractor) {
         this.addEventInteractor = addEventInteractor;
@@ -24,7 +26,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onAddEventClicked() {
         //view.showProgress();
-        Event eventSketch = new Event(nameEvent,nameHost,"1",description,tags,dateStart,dateEnd);
+        Event eventSketch = new Event("2", nameHost, nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
             public void onSuccess(Event result) {
@@ -43,30 +45,35 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
 
 
-    public void onTagSelected(int tag) {
+    public void onTagSelected(String tag) {
         if(tags.contains(tag)) {
            // tags.remove(tags.size()-1);
             for(int i=0;i<tags.size();i++){
-                if(tags.get(i)==tag) tags.remove(i);
+                if(tags.get(i).equals(tag)) tags.remove(i);
             }
         } else {
             tags.add(tag);
         }
     }
+
     public void onNameEventChanged(CharSequence nameEvent){
         this.nameEvent = nameEvent.toString();
+    }
+    public void onPlaceChanged(CharSequence eventPlace){
+        this.eventPlace = eventPlace.toString();
     }
     public void onNameHostChanged(CharSequence nameHost){
         this.nameHost = nameHost.toString();
     }
+
     public void onDescriptionChanged(CharSequence description){
         this.description = description.toString();
     }
-    public void onDataStartChanged(CharSequence dateStart){
-        this.dateStart = dateStart.toString();
+    public void onDataStartChanged(String dateStart){
+        this.dateStart = dateStart;
     }
-    public void onDataEndChanged(CharSequence dateEnd){
-        this.dateEnd = dateEnd.toString();
+    public void onDataEndChanged(String dateEnd){
+        this.dateEnd = dateEnd;
     }
 
 

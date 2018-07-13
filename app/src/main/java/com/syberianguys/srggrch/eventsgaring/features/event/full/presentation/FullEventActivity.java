@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +67,13 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
 
         presenter.onEventSelected(id);
 
+        wantToGoBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.onWantToGoClicked(id);
+            }
+        });
+
 
     }
 
@@ -110,13 +118,29 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         nameEvent.setText(event.getName());
         nameHost.setText(event.getHost_name());
         fullDescription.setText(event.getDescription());
-        //place.setText();
-        date.setText(event.getStart());
+        place.setText(event.getPlace());
+        date.setText(DateUtils.formatDateTime(this,
+                Long.parseLong(event.getStart()),
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+                        | DateUtils.FORMAT_SHOW_TIME));
         //eventImage
     }
 
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void assignFailed() {
+        Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void assignDone() {
+        wantToGoBut.setText(R.string.assign_done);
+        wantToGoBut.setFocusable(false);
+        wantToGoBut.setClickable(false);
+
     }
 }

@@ -4,33 +4,38 @@ import java.util.ArrayList;
 
 public class Event {
     private String id;
-    private String name;
-    private String host_name;
     private String host;
+    private String host_name;
+    private String name;
     private String description; //are we need additional var for short description
-    private ArrayList<Integer> tags;
-    private int[] guests;
+    private String place;
+    private ArrayList<String> tags;
+    private ArrayList<String> guests;
     private String start;
     private String end;
     private boolean isAvailable;
 
-    public Event(String id, String host, String eventName, String description, ArrayList<Integer> tags, int[] guests, String start, String end) {
+    public Event(String id, String host, String host_name, String name, String description, String place, ArrayList<String> tags, ArrayList<String> guests, String start, String end) {
         this.id = id;
         this.host = host;
-        this.name = eventName;
+        this.host_name = host_name;
+        this.name = name;
         this.description = description;
+        this.place = place;
         this.tags = tags;
         this.guests = guests;
         this.start = start;
         this.end = end;
     }
 
-    public Event(String name,String host_name, String host, String description, ArrayList<Integer> tags, String start, String end) {
-        this.name = name;
-        this.host_name = host_name;
+    public Event(String host, String host_name, String name, String description, String place, ArrayList<String> tags, ArrayList<String> guests, String start, String end) {
         this.host = host;
+        this.host_name = host_name;
+        this.name = name;
         this.description = description;
+        this.place = place;
         this.tags = tags;
+        this.guests = guests;
         this.start = start;
         this.end = end;
     }
@@ -47,6 +52,10 @@ public class Event {
     public Event() {
     }
 
+    public String getPlace() {
+        return place;
+    }
+
     public String getHost_name() { return host_name; }
 
     public String getName() {
@@ -61,7 +70,7 @@ public class Event {
         return description;
     }
 
-    public ArrayList<Integer> getTags() {
+    public ArrayList<String> getTags() {
         return tags;
     }
 
@@ -77,7 +86,7 @@ public class Event {
         return isAvailable;
     }
 
-    public int[] getGuests() {
+    public ArrayList<String> getGuests() {
         return guests;
     }
 
