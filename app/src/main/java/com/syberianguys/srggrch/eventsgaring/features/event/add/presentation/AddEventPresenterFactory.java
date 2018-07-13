@@ -8,6 +8,10 @@ import com.syberianguys.srggrch.eventsgaring.features.event.add.data.AddEventDat
 import com.syberianguys.srggrch.eventsgaring.features.event.add.data.AddEventDataSourceImpl;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.data.AddEventRepository;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.data.AddEventRepositoryImpl;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.data.localstorage.AddEventLocalDataSource;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.data.localstorage.AddEventLocalDataSourceImpl;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.data.localstorage.AddEventLocalRepository;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.data.localstorage.AddEventLocalRepositoryImpl;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.domain.AddEventInteractor;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.domain.AddEventInteractorImpl;
 
@@ -16,10 +20,13 @@ public final class AddEventPresenterFactory  {
         final AddEventApi api = App.getRetrofitProvider(context)
                 .getRetrofit()
                 .create(AddEventApi.class);
-
         final AddEventDataSource dataSource = new AddEventDataSourceImpl(api);
         final AddEventRepository repository = new AddEventRepositoryImpl(dataSource);
-        final AddEventInteractor interactor = new AddEventInteractorImpl(repository);
+
+        final AddEventLocalDataSource localDataSource = new AddEventLocalDataSourceImpl(context);
+        final AddEventLocalRepository localRepository = new AddEventLocalRepositoryImpl(localDataSource);
+
+        final AddEventInteractor interactor = new AddEventInteractorImpl(repository, localRepository);
 
         return new AddEventPresenter(interactor);
     }

@@ -33,4 +33,13 @@ public class ListLocalDataSourceImpl implements ListLocalDataSource {
     public String getString(String key) {
         return sharedPreferences.getString(key, null);
     }
+
+    @Override
+    public void remove_prefernces() {
+       SharedPreferences.Editor editor=sharedPreferences.edit();
+       editor.clear();
+       editor.putBoolean("isAuth", false);
+        editor.remove("userData");
+        editor.commit();
+    }
 }

@@ -47,7 +47,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
 
     public void setEvents(List<Event> eventList){
         events.clear();
-        if(eventList != null)        events.addAll(eventList);
+        if(eventList != null) events.addAll(eventList);
         notifyDataSetChanged();
     }
 
@@ -65,10 +65,12 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
         private final TextView eventDate;
         private final Button eventMore;
         private final SelectEventListener selectEventListener;
+        private final TextView counter;
 
         EventHolder(View itemView, SelectEventListener selectEventListener) {
             super(itemView);
             this.selectEventListener = selectEventListener;
+            counter = itemView.findViewById(R.id.event_counter);
             eventName = itemView.findViewById(R.id.item_element_textView_eventName);
             eventDate = itemView.findViewById(R.id.item_element_textView_eventDate);
             eventHost = itemView.findViewById(R.id.item_element_textView_eventHost);
@@ -77,8 +79,9 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.EventHolder>
         }
         void bind(final Event event){
             eventName.setText(event.getName());
+            counter.setText(Integer.toString(event.getGuests().size()));
             shortDesription.setText(event.getDescription());
-            eventHost.setText(event.getHost());
+            eventHost.setText(event.getHost_name());
             if (event.getStart() != null)
             eventDate.setText(DateUtils.formatDateTime(context,
                     Long.parseLong(event.getStart()),

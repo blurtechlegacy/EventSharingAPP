@@ -33,6 +33,8 @@ import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.S
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedView;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenterFactory;
@@ -173,12 +175,11 @@ public class MyEventsActivity extends BaseActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_allEvents) {
-            // Handle the camera action
             EventsListActivity.start(this,true);
         } else if (id == R.id.nav_myEvents) {
 
         } else if (id == R.id.nav_assignedEvents) {
-
+            AssignedActivity.start(this);
         } else if (id == R.id.nav_settings) {
 
         }

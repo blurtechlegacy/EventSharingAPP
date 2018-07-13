@@ -26,12 +26,20 @@
             android:name=".features.event.add.presentation.AddEventActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".features.auth.signin.presentation.SignInActivity" />
-        <activity android:name=".features.event.full.presentation.FullEventActivity" />
+        <activity
+            android:name=".features.event.full.presentation.FullEventActivity"
+            android:label="@string/title_new_event"/>
         <activity android:name=".features.auth.signup.presenter.SignUpActivity" />
         <activity
             android:name=".features.event.my.presenter.MyEventsActivity"
             android:label="@string/title_activity_my_events"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".features.event.assigned.presenter.AssignedActivity"
+            android:label="@string/title_assigned_events"
+            />
+
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

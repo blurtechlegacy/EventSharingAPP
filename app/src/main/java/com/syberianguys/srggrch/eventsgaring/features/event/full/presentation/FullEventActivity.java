@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EdgeEffect;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,21 +24,33 @@ import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AdapterTag;
+import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.Tag;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenterFactory;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FullEventActivity extends BaseActivity implements FullActivityView {
 
     private FullEventPresenter presenter;
     private ProgressBar progressBar;
 
-    TextView nameEvent ;
     TextView nameHost;
     TextView fullDescription;
     TextView place;
     TextView date;
-    ImageView eventImage;
     Button wantToGoBut;
+
+    Toolbar toolbar;
+
+    private RecyclerView recyclerTags;
+    private RecyclerView.LayoutManager layoutManager;
+    private AdapterTagFullEvent fullEventTagsAdapter;
+
+    private ArrayList<Tag> tags;
 
     String id;
 
@@ -48,18 +64,21 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_full_description_event);
+        setContentView(R.layout.app_bar_full_event);
+
+
+        toolbar = findViewById(R.id.full_event_toolbar);
+        setSupportActionBar(toolbar);
+
 
 
         progressBar = findViewById(R.id.full_event_progressBar);
         Log.e("FullEventActivity", "Started");
 
-        nameEvent = findViewById(R.id.name_event);
         nameHost = findViewById(R.id.name_host);
         fullDescription = findViewById(R.id.event_description);
         place = findViewById(R.id.event_place);
         date = findViewById(R.id.event_date);
-        eventImage = findViewById(R.id.event_image);
         wantToGoBut = findViewById(R.id.want_to_go_but);
 
         //wantToGoBut.setOnClickListener();
@@ -73,6 +92,14 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
                 presenter.onWantToGoClicked(id);
             }
         });
+
+        recyclerTags = findViewById(R.id.full_event_recycler_view_tags);
+
+        layoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
+        recyclerTags.setLayoutManager(layoutManager);
+        fullEventTagsAdapter = new AdapterTagFullEvent(tags);
+        recyclerTags.setAdapter(fullEventTagsAdapter);
+
 
 
     }
@@ -92,12 +119,11 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
         nameHost.setVisibility(View.GONE);
-        nameEvent.setVisibility(View.GONE);
         place.setVisibility(View.GONE);
         fullDescription.setVisibility(View.GONE);
         date.setVisibility(View.GONE);
+        recyclerTags.setVisibility(View.GONE);
         wantToGoBut.setVisibility(View.GONE);
-        eventImage.setVisibility(View.GONE);
     }
 
     @Override
@@ -105,17 +131,15 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         place.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
         nameHost.setVisibility(View.VISIBLE);
-        nameEvent.setVisibility(View.VISIBLE);
         fullDescription.setVisibility(View.VISIBLE);
         date.setVisibility(View.VISIBLE);
+        recyclerTags.setVisibility(View.VISIBLE);
         wantToGoBut.setVisibility(View.VISIBLE);
-        eventImage.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void showEvent(Event event) {
-        //presenter
-        nameEvent.setText(event.getName());
+    public void showEvent(Event event, List<Tag> tags) {
+        getSupportActionBar().setTitle(event.getName());
         nameHost.setText(event.getHost_name());
         fullDescription.setText(event.getDescription());
         place.setText(event.getPlace());
@@ -123,7 +147,8 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
                 Long.parseLong(event.getStart()),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
-        //eventImage
+
+        fullEventTagsAdapter.setTags(tags);
     }
 
     @Override

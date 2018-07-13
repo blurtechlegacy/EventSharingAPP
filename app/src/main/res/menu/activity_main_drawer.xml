@@ -7,19 +7,19 @@
         <item
             android:id="@+id/nav_allEvents"
             android:icon="@drawable/ic_all_events"
-            android:title="All Events" />
+            android:title="Все события" />
         <item
             android:id="@+id/nav_myEvents"
             android:icon="@drawable/ic_menu_share"
-            android:title="My Events" />
+            android:title="Мои события" />
         <item
             android:id="@+id/nav_assignedEvents"
             android:icon="@drawable/ic_assigned_events"
-            android:title="Assigned Events" />
+            android:title="Иду" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_settings"
-            android:title="Settings" />
+            android:icon="@drawable/ic_logout"
+            android:title="Выйти" />
     </group>
 
 

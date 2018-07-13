@@ -33,9 +33,13 @@ import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.User;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.my.presenter.MyEventsActivity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class EventsListActivity extends BaseActivity
@@ -188,9 +192,9 @@ public class EventsListActivity extends BaseActivity
         } else if (id == R.id.nav_myEvents) {
             MyEventsActivity.start(this);
         } else if (id == R.id.nav_assignedEvents) {
-
+            AssignedActivity.start(this);
         } else if (id == R.id.nav_settings) {
-
+                presenter.onSettingsClicked();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -213,7 +217,13 @@ public class EventsListActivity extends BaseActivity
 
     @Override
     public void showEventList(List<Event> list) {
+        Collections.reverse(list);
         if (presenter.isAuth()) adapterEvent.setEvents(list);
+    }
+
+    @Override
+    public void signOutDone(Boolean isAuth) {
+        if (!isAuth) SignInActivity.start(this);
     }
 
 //    public void setUser (User user){

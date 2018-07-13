@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
@@ -22,10 +23,12 @@ import com.syberianguys.srggrch.eventsgaring.features.BaseActivity;
 import com.syberianguys.srggrch.eventsgaring.features.DefaultTextWatcher;
 import com.syberianguys.srggrch.eventsgaring.features.MvpPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.MvpView;
+import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventsListActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public final class AddEventActivity extends BaseActivity implements AddEventView {
     private AddEventPresenter presenter;
@@ -37,7 +40,6 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     }
 
     private EditText editNameEvent;
-    private EditText editHostName;
     private EditText editDescription;
     private EditText editPlace;
     private TextView startEvent;
@@ -47,9 +49,9 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
 
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
-    private AdapterTag addNewEventAdapter;
+    private AdapterTag adapterTag;
 
-    private ArrayList<Tag> tags;
+   // private ArrayList<Tag> tags;
 
     Calendar dateAndTime = Calendar.getInstance();
 
@@ -57,11 +59,16 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_event);
+        setContentView(R.layout.app_bar_new_event);
+
+        Toolbar toolbar = findViewById(R.id.new_event_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(R.string.title_new_event);
+
+
 
         editPlace = findViewById(R.id.adding_event_place);
         editNameEvent = findViewById(R.id.adding_event_name);
-        editHostName = findViewById(R.id.adding_host_name);
         editDescription = findViewById(R.id.adding_event_discription);
         startEvent = findViewById(R.id.start_event_date);
         endEvent = findViewById(R.id.end_event_date);
@@ -72,12 +79,6 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 presenter.onNameEventChanged(s);
-            }
-        });
-        editHostName.addTextChangedListener(new DefaultTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                presenter.onNameHostChanged(s);
             }
         });
         editDescription.addTextChangedListener(new DefaultTextWatcher() {
@@ -112,26 +113,22 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             @Override
             public void onClick(View v) {
                 presenter.onAddEventClicked();
-                EventsListActivity.start(AddEventActivity.this, true);
             }
         });
 
-        tags = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            tags.add(new Tag(Integer.toString(i),"#new_tag" + i, false));
-        }
+
 
         recyclerTags = findViewById(R.id.recycler_view_tags);
 
         layoutManager = new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false);
         recyclerTags.setLayoutManager(layoutManager);
-        addNewEventAdapter = new AdapterTag(tags, new AdapterTag.TagListerner() {
+        adapterTag = new AdapterTag(new AdapterTag.TagListerner() {
             @Override
             public void onTagSelected(String tagText) {
                 presenter.onTagSelected(tagText);
             }
         });
-        recyclerTags.setAdapter(addNewEventAdapter);
+        recyclerTags.setAdapter(adapterTag);
     }
 
 
@@ -156,12 +153,24 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     @Override
     public void hideProgress() {
         //  progressBar.setVisibility(View.GONE);
+
+        EventsListActivity.start(AddEventActivity.this, true);
+    }
+
+    @Override
+    public void dateEmptyError() {
+        Toast.makeText(this, "date is empty", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
+    }
+
+    @Override
+    public void showTagList(List<Tag> list) {
+        adapterTag.setEvents(list);
     }
 
     DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
@@ -172,6 +181,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             setTimeEnd();
+
         }
     };
 

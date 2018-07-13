@@ -19,4 +19,11 @@ public class ListLocalRepositoryImpl implements ListLocalRepository {
     public User getUser() {
         return dataSource.getUser();
     }
+
+    @Override
+    public void remove() {
+        dataSource.remove_prefernces();
+    }
+
+
 }

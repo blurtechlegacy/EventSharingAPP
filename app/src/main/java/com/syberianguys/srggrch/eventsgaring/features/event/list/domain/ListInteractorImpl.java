@@ -36,4 +36,9 @@ public final class ListInteractorImpl implements ListInteractor {
     public User getUser() {
         return localRepository.getUser();
     }
+
+    @Override
+    public void removePref() {
+        localRepository.remove();
+    }
 }
