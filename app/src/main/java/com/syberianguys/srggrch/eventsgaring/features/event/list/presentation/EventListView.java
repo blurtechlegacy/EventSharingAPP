@@ -13,6 +13,8 @@ public interface EventListView extends MvpView{
 
     void showEventList(List<Event> list);
 
+    void signOutDone(Boolean isAuth);
+
 //    void setUser (User user);
 
     void showError(String message);

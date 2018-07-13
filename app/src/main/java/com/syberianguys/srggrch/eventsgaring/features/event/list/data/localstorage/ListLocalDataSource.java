@@ -9,4 +9,6 @@ public interface ListLocalDataSource {
 
     String getString(String key);
 
+    void remove_prefernces();
+
 }
