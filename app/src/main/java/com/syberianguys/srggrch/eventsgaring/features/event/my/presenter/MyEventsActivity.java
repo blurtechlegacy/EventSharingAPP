@@ -33,6 +33,8 @@ import com.syberianguys.srggrch.eventsgaring.features.auth.signin.presentation.S
 import com.syberianguys.srggrch.eventsgaring.features.core.events.AdapterEvent;
 import com.syberianguys.srggrch.eventsgaring.features.core.events.model.Event;
 import com.syberianguys.srggrch.eventsgaring.features.event.add.presentation.AddEventActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedActivity;
+import com.syberianguys.srggrch.eventsgaring.features.event.assigned.presenter.AssignedView;
 import com.syberianguys.srggrch.eventsgaring.features.event.full.presentation.FullEventActivity;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenter;
 import com.syberianguys.srggrch.eventsgaring.features.event.list.presentation.EventListPresenterFactory;
