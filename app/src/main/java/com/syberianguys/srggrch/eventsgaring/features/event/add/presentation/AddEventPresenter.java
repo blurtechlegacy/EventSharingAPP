@@ -26,7 +26,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
 
     public void onAddEventClicked() {
         //view.showProgress();
-        Event eventSketch = new Event(nameHost,"1", nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
+        Event eventSketch = new Event("2", nameHost, nameEvent, description, eventPlace, tags, guests, dateStart, dateEnd);
         addEventInteractor.addEvent(eventSketch, new Carry<Event>() {
             @Override
             public void onSuccess(Event result) {

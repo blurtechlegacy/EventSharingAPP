@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -118,7 +119,10 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         nameHost.setText(event.getHost_name());
         fullDescription.setText(event.getDescription());
         place.setText(event.getPlace());
-        date.setText(event.getStart());
+        date.setText(DateUtils.formatDateTime(this,
+                Long.parseLong(event.getStart()),
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+                        | DateUtils.FORMAT_SHOW_TIME));
         //eventImage
     }
 
