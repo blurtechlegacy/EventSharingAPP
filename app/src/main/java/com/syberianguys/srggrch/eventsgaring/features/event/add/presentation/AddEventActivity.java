@@ -159,6 +159,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateAndTime.clear();
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -184,7 +185,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
-
+        presenter.onDataEndChanged(String.valueOf(dateAndTime.getTimeInMillis()));
 
     }
 
@@ -208,6 +209,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     DatePickerDialog.OnDateSetListener dateSetListenerStart = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dateAndTime.clear();
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
@@ -232,6 +234,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
+        presenter.onDataStartChanged(String.valueOf(dateAndTime.getTimeInMillis()));
     }
 
     public void setTimeStart() {
