@@ -5,15 +5,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".App"
-        android:theme="@style/AppTheme"
-
-        >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".features.event.list.presentation.EventsListActivity"
             android:label="@string/app_name"
@@ -24,12 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.event.add.presentation.AddEventActivity"
-            android:windowSoftInputMode="adjustPan"
-            />
+        <activity
+            android:name=".features.event.add.presentation.AddEventActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".features.auth.signin.presentation.SignInActivity" />
         <activity android:name=".features.event.full.presentation.FullEventActivity" />
-        <activity android:name=".features.auth.signup.presenter.SignUpActivity"></activity>
+        <activity android:name=".features.auth.signup.presenter.SignUpActivity" />
+        <activity
+            android:name=".features.event.my.presenter.MyEventsActivity"
+            android:label="@string/title_activity_my_events"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

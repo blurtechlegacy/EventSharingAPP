@@ -28,4 +28,5 @@
         <item>male</item>
         <item>female</item>
     </string-array>
+    <string name="title_activity_my_events">MyEventsActivity</string>
 </resources>
