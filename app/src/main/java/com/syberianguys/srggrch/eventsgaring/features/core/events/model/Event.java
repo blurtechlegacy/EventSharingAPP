@@ -52,6 +52,7 @@ public class Event {
     public Event() {
     }
 
+
     public String getPlace() {
         return place;
     }
