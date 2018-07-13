@@ -179,7 +179,7 @@ public class MyEventsActivity extends BaseActivity
         } else if (id == R.id.nav_myEvents) {
 
         } else if (id == R.id.nav_assignedEvents) {
-
+            AssignedActivity.start(this);
         } else if (id == R.id.nav_settings) {
 
         }
