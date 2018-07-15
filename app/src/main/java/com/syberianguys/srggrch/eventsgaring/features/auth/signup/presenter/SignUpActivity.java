@@ -86,12 +86,6 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
                 presenter.onRepeatPasswordChanged(s);
             }
         });
-//        editBirthday.addTextChangedListener(new DefaultTextWatcher() {
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                presenter.onBirthdayChanged(s);
-//            }
-//        });
         editBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +96,6 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
             @Override
             public void onClick(View v) {
                 presenter.onRegButClicked();
-                //if(a==true)
                     EventsListActivity.start(SignUpActivity.this,true);
 
             }
@@ -153,34 +146,16 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setTimeEnd();
-
-        }
-    };
-
-    TimePickerDialog.OnTimeSetListener timeSetListenerEnd = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            dateAndTime.set(Calendar.MINUTE, minute);
             setInitialBirthday();
         }
-
     };
-    public void setTimeEnd() {
-        new TimePickerDialog(SignUpActivity.this, timeSetListenerEnd,
-                dateAndTime.get(Calendar.HOUR_OF_DAY),
-                dateAndTime.get(Calendar.MINUTE), true)
-                .show();
 
-    }
     private void setInitialBirthday() {
 
 
         editBirthday.setText(DateUtils.formatDateTime(this,
                 dateAndTime.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
-                        | DateUtils.FORMAT_SHOW_TIME));
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
         presenter.onBirthdayChanged(String.valueOf(dateAndTime.getTimeInMillis()));
 
     }
@@ -190,6 +165,5 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH))
                 .show();
-        // setTimeEnd(v);
     }
 }
