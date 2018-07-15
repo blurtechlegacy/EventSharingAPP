@@ -31,4 +31,5 @@
     </string-array>
     <string name="title_activity_my_events">Мои события</string>
     <string name="title_assigned_events">Иду</string>
+    <string name="signup_birthday">birthday</string>
 </resources>
