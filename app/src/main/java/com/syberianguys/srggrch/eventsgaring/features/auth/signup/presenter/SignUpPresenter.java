@@ -20,24 +20,21 @@ public class SignUpPresenter extends MvpPresenter<SignUpView>{
         this.interactor = signUpInteractor;
     }
     public void onRegButClicked(){
-        if(password.equals(repeatPassword)){
-        User user = new User(login,password,nameUser,birthday,userGender.getId()) ;
-       interactor.addUser(user, new Carry<User>() {
-            @Override
-            public void onSuccess(User result) {
+        if(view.checker(nameUser,login,password,repeatPassword)) {
+            User user = new User(login, password, nameUser, birthday, userGender.getId());
+            interactor.addUser(user, new Carry<User>() {
+                @Override
+                public void onSuccess(User result) {
 
-            }
+                }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-            view.showError(throwable.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Throwable throwable) {
+                    view.showError(throwable.getMessage());
+                }
+            });
         }
-        else{
-         //  SignUpActivity.a = false;
-           view.showError("password and repeat password must be eqvivalent");
-        }
+
     }
 
     public void onLoginChanged(CharSequence login){
@@ -54,6 +51,7 @@ public class SignUpPresenter extends MvpPresenter<SignUpView>{
     }
     public void onRepeatPasswordChanged(CharSequence repeatPassword){
         this.repeatPassword = repeatPassword.toString();
+        view.confirmPasswordChecker(password,repeatPassword.toString());
     }
 
     public void setUserGender(UserGender userGender) {

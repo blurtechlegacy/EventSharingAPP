@@ -43,10 +43,10 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
     //public static boolean a=true; // чет как-то хз
 
 
-    public static void start(Context context){
+    public static void start(Context context) {
         final Intent intent = new Intent(context, SignUpActivity.class);
         //intent.putExtra("isAuth", isAuth);
-       context.startActivity(intent);
+        context.startActivity(intent);
     }
 @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +103,7 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
             public void onClick(View v) {
                 presenter.onRegButClicked();
                 //if(a==true)
-                    EventsListActivity.start(SignUpActivity.this,true);
+
 
             }
         });
@@ -145,6 +145,63 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public boolean nameChecker(String name) {
+        if(name==null || name.equals("")){
+            editNameUser.setError("пропуск на пати только по имени");
+            return false;
+        }
+        else return true;
+    }
+
+    @Override
+    public boolean loginChecker(String login) {
+        if(login==null || login.equals("")){
+            editLogin.setError("придумай свой уникальный логин на eventhub");
+            return false;
+        }
+        else return true;
+    }
+
+    @Override
+    public boolean passwordChecker(String password) {
+        if(password==null || password.equals("")){
+            editPassword.setError("пароль должен быть не нулевым");
+            return false;
+        }
+        else return true;
+    }
+
+    @Override
+    public boolean confirmPasswordChecker(String password,String confirmPassword) {
+       if(confirmPassword!=null && password.equals(confirmPassword)) return true;
+       else{
+           editRepeatPassword.setError("ты должен в точности повторить пароль");
+           return false;
+       }
+    }
+
+
+    @Override
+    public boolean checker(String name, String login, String password, String confirmPassword)
+    {
+       boolean isNameCorrect =  nameChecker(name);
+       boolean isLoginCorrect = loginChecker(login);
+       boolean isPasswordCorrect = passwordChecker(password);
+       boolean isConfirmPasswordCorrect = confirmPasswordChecker(password,confirmPassword);
+
+        if(isNameCorrect==true && isLoginCorrect==true &&
+                isPasswordCorrect==true && isConfirmPasswordCorrect==true){
+            EventsListActivity.start(this,true);
+            return true;
+        }
+       else {
+            Toast.makeText(this ,"заполните обязательные поля",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
 
     DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
         @Override
