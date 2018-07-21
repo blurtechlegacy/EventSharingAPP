@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.syberianguys.srggrch.eventsgaring"
+        applicationId "tech.blur.eventhub"
         minSdkVersion 22
         targetSdkVersion 27
         versionCode 1

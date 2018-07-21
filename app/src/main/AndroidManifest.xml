@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.syberianguys.srggrch.eventsgaring">
+    package="tech.blur.eventhub">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
-        android:name=".App"
+        android:name="tech.blur.eventhub.App"
         android:allowBackup="true"
         android:icon="@drawable/ico"
         android:label="@string/app_name"
@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".features.event.list.presentation.EventsListActivity"
+            android:name="tech.blur.eventhub.features.event.list.presentation.EventsListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,19 +24,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.event.add.presentation.AddEventActivity"
+            android:name="tech.blur.eventhub.features.event.add.presentation.AddEventActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".features.auth.signin.presentation.SignInActivity" />
+        <activity android:name="tech.blur.eventhub.features.auth.signin.presentation.SignInActivity" />
         <activity
-            android:name=".features.event.full.presentation.FullEventActivity"
+            android:name="tech.blur.eventhub.features.event.full.presentation.FullEventActivity"
             android:label="@string/title_new_event"/>
-        <activity android:name=".features.auth.signup.presenter.SignUpActivity" />
+        <activity android:name="tech.blur.eventhub.features.auth.signup.presenter.SignUpActivity" />
         <activity
-            android:name=".features.event.my.presenter.MyEventsActivity"
+            android:name="tech.blur.eventhub.features.event.my.presenter.MyEventsActivity"
             android:label="@string/title_activity_my_events"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".features.event.assigned.presenter.AssignedActivity"
+            android:name="tech.blur.eventhub.features.event.assigned.presenter.AssignedActivity"
             android:label="@string/title_assigned_events"
             />
 
