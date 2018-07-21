@@ -217,7 +217,7 @@ public class EventsListActivity extends BaseActivity
 
     @Override
     public void showEventList(List<Event> list) {
-        Collections.reverse(list);
+      if(list!=null)        Collections.reverse(list);
         if (presenter.isAuth()) adapterEvent.setEvents(list);
     }
 

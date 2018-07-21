@@ -43,10 +43,10 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
     //public static boolean a=true; // чет как-то хз
 
 
-    public static void start(Context context){
+    public static void start(Context context) {
         final Intent intent = new Intent(context, SignUpActivity.class);
         //intent.putExtra("isAuth", isAuth);
-       context.startActivity(intent);
+        context.startActivity(intent);
     }
 @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +86,6 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
                 presenter.onRepeatPasswordChanged(s);
             }
         });
-//        editBirthday.addTextChangedListener(new DefaultTextWatcher() {
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                presenter.onBirthdayChanged(s);
-//            }
-//        });
         editBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,6 +97,7 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
             public void onClick(View v) {
                 presenter.onRegButClicked();
                 //if(a==true)
+
                     EventsListActivity.start(SignUpActivity.this,true);
 
             }
@@ -146,6 +141,63 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public boolean nameChecker(String name) {
+        if(name==null || name.equals("")){
+            editNameUser.setError("пропуск на пати только по имени");
+            return false;
+        }
+        else return true;
+    }
+
+    @Override
+    public boolean loginChecker(String login) {
+        if(login==null || login.equals("")){
+            editLogin.setError("придумай свой уникальный логин на eventhub");
+            return false;
+        }
+        else return true;
+    }
+
+    @Override
+    public boolean passwordChecker(String password) {
+        if(password==null || password.equals("")){
+            editPassword.setError("пароль должен быть не нулевым");
+            return false;
+        }
+        else return true;
+    }
+
+    @Override
+    public boolean confirmPasswordChecker(String password,String confirmPassword) {
+       if(confirmPassword!=null && password.equals(confirmPassword)) return true;
+       else{
+           editRepeatPassword.setError("ты должен в точности повторить пароль");
+           return false;
+       }
+    }
+
+
+    @Override
+    public boolean checker(String name, String login, String password, String confirmPassword)
+    {
+       boolean isNameCorrect =  nameChecker(name);
+       boolean isLoginCorrect = loginChecker(login);
+       boolean isPasswordCorrect = passwordChecker(password);
+       boolean isConfirmPasswordCorrect = confirmPasswordChecker(password,confirmPassword);
+
+        if(isNameCorrect==true && isLoginCorrect==true &&
+                isPasswordCorrect==true && isConfirmPasswordCorrect==true){
+            EventsListActivity.start(this,true);
+            return true;
+        }
+       else {
+            Toast.makeText(this ,"заполните обязательные поля",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+
     DatePickerDialog.OnDateSetListener dateSetListenerEnd = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -153,34 +205,16 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
             dateAndTime.set(Calendar.YEAR, year);
             dateAndTime.set(Calendar.MONTH, monthOfYear);
             dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setTimeEnd();
-
-        }
-    };
-
-    TimePickerDialog.OnTimeSetListener timeSetListenerEnd = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            dateAndTime.set(Calendar.MINUTE, minute);
             setInitialBirthday();
         }
-
     };
-    public void setTimeEnd() {
-        new TimePickerDialog(SignUpActivity.this, timeSetListenerEnd,
-                dateAndTime.get(Calendar.HOUR_OF_DAY),
-                dateAndTime.get(Calendar.MINUTE), true)
-                .show();
 
-    }
     private void setInitialBirthday() {
 
 
         editBirthday.setText(DateUtils.formatDateTime(this,
                 dateAndTime.getTimeInMillis(),
-                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
-                        | DateUtils.FORMAT_SHOW_TIME));
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
         presenter.onBirthdayChanged(String.valueOf(dateAndTime.getTimeInMillis()));
 
     }
@@ -190,6 +224,5 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH))
                 .show();
-        // setTimeEnd(v);
     }
 }
