@@ -9,5 +9,13 @@ public interface SignUpView extends MvpView{
 
     void showError(String message);
 
+    boolean nameChecker(String name);
 
+    boolean loginChecker(String login);
+
+    boolean passwordChecker(String password);
+
+    boolean confirmPasswordChecker(String password, String confirmPassword);
+
+    boolean checker(String name , String login , String password, String confirmPassword);
 }
