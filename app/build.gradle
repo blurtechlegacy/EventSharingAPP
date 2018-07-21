@@ -37,7 +37,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 }
 repositories {
     mavenCentral()
 }
+apply plugin: 'com.google.gms.google-services'
