@@ -18,26 +18,31 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import tech.blur.eventhub.R;
 import tech.blur.eventhub.features.BaseActivity;
 import tech.blur.eventhub.features.DefaultTextWatcher;
 import tech.blur.eventhub.features.MvpPresenter;
 import tech.blur.eventhub.features.MvpView;
-import tech.blur.eventhub.features.core.events.model.Event;
 import tech.blur.eventhub.features.event.list.presentation.EventsListActivity;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import tech.blur.eventhub.features.event.list.presentation.EventsListActivity;
-
-public final class AddEventActivity extends BaseActivity implements AddEventView {
+public final class AddEventActivity extends BaseActivity implements AddEventView,OnMapReadyCallback {
     private AddEventPresenter presenter;
+    private GoogleMap mMap;
+    private String coordinates;
 
-
-    public static void start(Context context) {
+    public static void start(Context context,String coordinates) {
         final Intent intent = new Intent(context, AddEventActivity.class);
+        intent.putExtra("coordinates",coordinates);
         context.startActivity(intent);
     }
 
@@ -48,6 +53,9 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     private TextView endEvent;
     private Button addEventButton;
 
+    private TextView setPlace;
+    private double latitude;
+    private double longtitude;
 
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
@@ -74,9 +82,28 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         editDescription = findViewById(tech.blur.eventhub.R.id.adding_event_discription);
         startEvent = findViewById(tech.blur.eventhub.R.id.start_event_date);
         endEvent = findViewById(tech.blur.eventhub.R.id.end_event_date);
+        setPlace = findViewById(R.id.add_event_place);
         addEventButton = findViewById(tech.blur.eventhub.R.id.add_new_event_but);
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.add_map);
+        mapFragment.getMapAsync(this);
 
+        Intent intent = getIntent();
+        coordinates = intent.getStringExtra("coordinates");
+        if(coordinates!=null && !coordinates.equals("")){
+            setPlace.setText(coordinates);
+            latitude = Double.parseDouble(coordinates.split("-")[0]);
+            longtitude = Double.parseDouble(coordinates.split("-")[1]);
+
+            setPlace.setText(latitude + "   " + longtitude);
+        }
+        setPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MapsActivity.start(AddEventActivity.this);
+            }
+        });
         editNameEvent.addTextChangedListener(new DefaultTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -92,7 +119,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
         editPlace.addTextChangedListener(new DefaultTextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                presenter.onPlaceChanged(s);
+              //  presenter.onPlaceChanged(s);
             }
         });
 
@@ -271,6 +298,47 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH))
                 .show();
+    }
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+
+
+        LatLng nsk = new LatLng(latitude, longtitude);
+
+            if(coordinates==null || coordinates.equals("")){
+              nsk  = new LatLng(55.0180013, 82.8923166);
+             // mMap.clear();
+            }else{
+                mMap.addMarker(new MarkerOptions().position(nsk));
+            }
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(nsk));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(nsk,12));
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+
+            @Override
+            public void onMapClick(LatLng point) {
+
+                mMap.clear();
+
+                MarkerOptions marker = new MarkerOptions().position(
+                        new LatLng(point.latitude, point.longitude)).title("New Marker");
+
+                mMap.addMarker(marker);
+                presenter.onMapClicked(point);
+                System.out.println(point.latitude+"---"+ point.longitude);
+            }
+        });
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                MapsActivity.start(AddEventActivity.this);
+            }
+        });
     }
 
 }

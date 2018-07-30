@@ -19,6 +19,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import tech.blur.eventhub.R;
 import tech.blur.eventhub.features.BaseActivity;
 import tech.blur.eventhub.features.MvpPresenter;
@@ -33,17 +40,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FullEventActivity extends BaseActivity implements FullActivityView {
+public class FullEventActivity extends BaseActivity implements FullActivityView,OnMapReadyCallback {
 
     private FullEventPresenter presenter;
     private ProgressBar progressBar;
-
+    private GoogleMap mMap;
     TextView nameHost;
     TextView fullDescription;
     TextView place;
     TextView date;
     Button wantToGoBut;
-
     Toolbar toolbar;
 
     private RecyclerView recyclerTags;
@@ -53,6 +59,7 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
     private ArrayList<Tag> tags;
 
     String id;
+
 
     public static void start (Context context, String id){
         final Intent intent = new Intent(context, FullEventActivity.class);
@@ -80,6 +87,10 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         place = findViewById(tech.blur.eventhub.R.id.event_place);
         date = findViewById(tech.blur.eventhub.R.id.event_date);
         wantToGoBut = findViewById(tech.blur.eventhub.R.id.want_to_go_but);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         //wantToGoBut.setOnClickListener();
         id = getIntent().getStringExtra("Event_id");
@@ -147,7 +158,6 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
                 Long.parseLong(event.getStart()),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
                         | DateUtils.FORMAT_SHOW_TIME));
-
         fullEventTagsAdapter.setTags(tags);
     }
 
@@ -168,4 +178,29 @@ public class FullEventActivity extends BaseActivity implements FullActivityView 
         wantToGoBut.setClickable(false);
 
     }
+
+    @Override
+    public void addMarker(String coordinates) {
+        try{
+            double latitude = Double.parseDouble(coordinates.split(",")[0]);
+            double longtitude = Double.parseDouble(coordinates.split(",")[1]);
+            LatLng nsk = new LatLng(latitude,longtitude);
+            mMap.addMarker(new MarkerOptions().position(nsk));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(nsk));
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(nsk,12));
+        }catch (Exception e){
+            Toast.makeText(this,"Невозможно найти местоположение встречи",Toast.LENGTH_SHORT);
+        }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        LatLng nsk = new LatLng(55.0180013, 82.8923166);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(nsk));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(nsk,12));
+
+    }
+
+
 }

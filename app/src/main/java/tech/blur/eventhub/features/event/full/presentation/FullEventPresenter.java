@@ -46,6 +46,7 @@ public class FullEventPresenter extends MvpPresenter<FullActivityView> {
                         }
                         view.hideProgress();
                         view.showEvent(result, tags);
+                        view.addMarker(result.getPlace());
                         if ((result.getGuests() != null)&&(result.getGuests().contains(fullEventInteracor.getUserId()))) view.assignDone();
                     }
 

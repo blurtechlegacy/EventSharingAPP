@@ -1,5 +1,7 @@
 package tech.blur.eventhub.features.event.add.presentation;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import tech.blur.eventhub.features.MvpPresenter;
 import tech.blur.eventhub.features.core.events.model.Event;
 import tech.blur.eventhub.features.core.events.model.User;
@@ -101,4 +103,7 @@ public class AddEventPresenter extends MvpPresenter<AddEventView> {
     }
 
 
+    public void onMapClicked(LatLng point) {
+        eventPlace = point.latitude+","+point.longitude;
+    }
 }

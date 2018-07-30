@@ -33,6 +33,7 @@ import tech.blur.eventhub.features.core.events.AdapterEvent;
 import tech.blur.eventhub.features.core.events.model.Event;
 import tech.blur.eventhub.features.core.events.model.User;
 import tech.blur.eventhub.features.event.add.presentation.AddEventActivity;
+import tech.blur.eventhub.features.event.add.presentation.MapsActivity;
 import tech.blur.eventhub.features.event.assigned.presenter.AssignedActivity;
 import tech.blur.eventhub.features.event.full.presentation.FullEventActivity;
 import tech.blur.eventhub.features.event.my.presenter.MyEventsActivity;
@@ -77,7 +78,7 @@ public class EventsListActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddEventActivity.start(EventsListActivity.this);
+                AddEventActivity.start(EventsListActivity.this,null);
             }
         });
 

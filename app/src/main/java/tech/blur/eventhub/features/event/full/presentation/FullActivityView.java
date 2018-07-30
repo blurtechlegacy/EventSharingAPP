@@ -20,4 +20,6 @@ public interface FullActivityView extends MvpView {
     void assignFailed();
 
     void assignDone();
+
+    void addMarker(String coordinates);
 }
