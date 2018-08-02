@@ -38,11 +38,15 @@ import java.util.List;
 public final class AddEventActivity extends BaseActivity implements AddEventView,OnMapReadyCallback {
     private AddEventPresenter presenter;
     private GoogleMap mMap;
-    private String coordinates;
+
 
     public static void start(Context context,String coordinates) {
         final Intent intent = new Intent(context, AddEventActivity.class);
         intent.putExtra("coordinates",coordinates);
+        context.startActivity(intent);
+    }
+    public static void start(Context context) {
+        final Intent intent = new Intent(context, AddEventActivity.class);
         context.startActivity(intent);
     }
 
@@ -54,8 +58,7 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     private Button addEventButton;
 
     private TextView setPlace;
-    private double latitude;
-    private double longtitude;
+
 
     private RecyclerView recyclerTags;
     private RecyclerView.LayoutManager layoutManager;
@@ -89,15 +92,8 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 .findFragmentById(R.id.add_map);
         mapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
-        coordinates = intent.getStringExtra("coordinates");
-        if(coordinates!=null && !coordinates.equals("")){
-            setPlace.setText(coordinates);
-            latitude = Double.parseDouble(coordinates.split("-")[0]);
-            longtitude = Double.parseDouble(coordinates.split("-")[1]);
 
-            setPlace.setText(latitude + "   " + longtitude);
-        }
+
         setPlace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -303,17 +299,19 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        LatLng nsk;
+        try{
+            Intent intent = getIntent();
+            String coordinates = intent.getStringExtra("coordinates");
+            double latitude = Double.parseDouble(coordinates.split("-")[0]);
+            double longtitude = Double.parseDouble(coordinates.split("-")[1]);
+            nsk = new LatLng(latitude, longtitude);
+            mMap.addMarker(new MarkerOptions().position(nsk));
+        }catch(NullPointerException e){
 
+            nsk  = new LatLng(55.0180013, 82.8923166);
 
-        LatLng nsk = new LatLng(latitude, longtitude);
-
-            if(coordinates==null || coordinates.equals("")){
-              nsk  = new LatLng(55.0180013, 82.8923166);
-             // mMap.clear();
-            }else{
-                mMap.addMarker(new MarkerOptions().position(nsk));
-            }
+        }
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nsk));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(nsk,12));
@@ -326,11 +324,10 @@ public final class AddEventActivity extends BaseActivity implements AddEventView
                 mMap.clear();
 
                 MarkerOptions marker = new MarkerOptions().position(
-                        new LatLng(point.latitude, point.longitude)).title("New Marker");
+                        new LatLng(point.latitude, point.longitude));
 
                 mMap.addMarker(marker);
                 presenter.onMapClicked(point);
-                System.out.println(point.latitude+"---"+ point.longitude);
             }
         });
         mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {

@@ -78,7 +78,7 @@ public class EventsListActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddEventActivity.start(EventsListActivity.this,null);
+                AddEventActivity.start(EventsListActivity.this);
             }
         });
 

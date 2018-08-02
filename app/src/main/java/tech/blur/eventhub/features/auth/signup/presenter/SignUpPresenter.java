@@ -36,6 +36,7 @@ public class SignUpPresenter extends MvpPresenter<SignUpView>{
                     view.showError(throwable.getMessage());
                 }
             });
+
         }
 
     }

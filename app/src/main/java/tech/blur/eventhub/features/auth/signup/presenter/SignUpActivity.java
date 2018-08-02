@@ -101,7 +101,7 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
                 presenter.onRegButClicked();
                 //if(a==true)
 
-                    EventsListActivity.start(SignUpActivity.this,true);
+
 
             }
         });
@@ -147,7 +147,7 @@ public final class SignUpActivity extends BaseActivity implements SignUpView {
     @Override
     public boolean nameChecker(String name) {
         if(name==null || name.equals("")){
-            editNameUser.setError("пропуск на пати только по имени");
+            //editNameUser.setError("пропуск на пати только по имени");
             return false;
         }
         else return true;

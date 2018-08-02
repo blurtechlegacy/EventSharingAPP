@@ -70,7 +70,7 @@ public class AssignedActivity extends BaseActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddEventActivity.start(AssignedActivity.this,null);
+                AddEventActivity.start(AssignedActivity.this);
             }
         });
 
